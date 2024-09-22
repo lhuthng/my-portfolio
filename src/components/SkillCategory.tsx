@@ -9,9 +9,13 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
     border-top: none;
     border-left: ${({ $isLeft }) => $isLeft ? '0px' : '3px solid black'};
     border-right: ${({ $isLeft }) => $isLeft ? '3px solid black' : '0px'};
-    border-bottom-left-radius: ${({ $isLeft }) => $isLeft ? '0px' : '10px'};;
-    border-bottom-right-radius: ${({ $isLeft }) => $isLeft ? '10px' : '0px'};
+    border-bottom-left-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
+    border-bottom-right-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
+    border-top-left-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
+    border-top-right-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
     align-items: ${({ $isLeft }) => $isLeft ? 'flex-end' : 'flex-start'};
+    background-color: rgba(230, 213, 255, 0.8);
+    filter: drop-shadow(0 0 0.1rem purple);
     p {
         margin: 0;
         white-space: nowrap; 
@@ -21,7 +25,7 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
 const SkillCategory: React.FC<SkillCategoryProps> = ({name, skills, isLeft}) => {
     return (
         <Container $isLeft={isLeft}>
-            <p style={{fontFamily: 'Omori1', filter: 'drop-shadow(0 0 0.2rem black)'}}>{name}</p>
+            <p style={{fontFamily: 'Omori1', filter: 'drop-shadow(0 0 0.4rem purple)'}}>{name}</p>
             {skills.map((skill, index) => <SkillEntity key={index} name={skill[0]} icon={skill[1]} isLeft={isLeft}></SkillEntity>)}
         </Container>
     );

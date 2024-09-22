@@ -6,6 +6,7 @@ const Entity = styled(HContainer)`
     gap: 1rem;
     p {
         color: #33069A;
+        text-decoration: none;
     }
     img: hover {
         filter: brightness(1.05);

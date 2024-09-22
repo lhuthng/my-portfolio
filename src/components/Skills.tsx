@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { VContainer, HContainer } from '../types';
+import { VContainer, HContainer, Layout, Title } from '../types';
 import SkillCategory from './SkillCategory';
 import comboIcons from '../images/htmlcssjs-icon.png';
 import reactIcon from '../images/react-icon.png';
@@ -33,16 +33,6 @@ import photoshopIcon from '../images/pts-icon.png';
 import flstudioIcon from '../images/flstudio-icon.png';
 
 
-const Layout = styled(VContainer)`
-    font-family: Omori2;
-    font-size: 2.2rem;
-    width: 100%;
-    p {
-        margin: 0;        
-        white-space: nowrap; 
-    }
-`;
-
 const MainContainer = styled(HContainer)`
     align-items: normal;
     justify-content: center;
@@ -52,7 +42,7 @@ const MainContainer = styled(HContainer)`
 const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     align-items: normal;
     flex-direction: ${({$isLeft}) => $isLeft ? 'row-reverse' : 'row'};
-    gap: 2rem;
+    gap: 1rem;
     width: 40%;
 `;
 
@@ -70,12 +60,6 @@ const ArtContainer = styled(SkillsContainer)`
 
 const CommonContainer = styled(SkillsContainer)`
     align-items: center;
-`;
-
-const Title = styled(VContainer)`
-    p {
-        margin: 0;
-    }
 `;
 
 const TextOnlySkills = styled.span`
@@ -147,15 +131,15 @@ const Skills: React.FC = () => {
     return (
         <Layout>
             <Title>
-                <h1 style={{fontFamily: 'Omori1', marginTop: 0, marginBottom: 0}}>~Skills~</h1>
+                <h1>~Skills~</h1>
                 <p>for</p>
             </Title>
             <MainContainer>
                 <SubContainer $isLeft={true}>
-                    <p>Software Developer</p>
+                    <p>~Software Developer</p>
                 </SubContainer>
                 <SubContainer $isLeft={false}>
-                    <p>Digital Artist</p>
+                    <p>Digital Artist~</p>
                 </SubContainer>
             </MainContainer>
             <MainContainer>
@@ -184,7 +168,7 @@ const Skills: React.FC = () => {
                 </SubContainer>                
             </MainContainer>
             <CommonContainer>
-                <p>Both</p>
+                <p>~Both~</p>
                 {commonSkills.map((skill, index) => <TextOnlySkills key={index}>{skill}</TextOnlySkills>)}
             </CommonContainer>
         </Layout>

@@ -12,6 +12,10 @@ import artstationIcon from '../images/artstation-icon.png';
 const GapHContainer = styled(HContainer)`
     padding: 2rem;
     gap: 5rem;
+    background-color: rgba(230, 213, 255, 0.8);
+    border: 0.2rem dashed purple;
+    border-radius: 5rem;
+    filter: drop-shadow(0 0 0.2rem purple);
 `;
 
 const GapVContainer = styled(VContainer)`
