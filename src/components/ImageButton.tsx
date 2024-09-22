@@ -13,10 +13,11 @@ const StyledButton = styled.button`
     margin: 0;
     padding: 0;
     transform-origin: center;
+    filter: drop-shadow(0 0 0.2rem purple);
     &: hover {
         filter: brightness(1.05);
         transform: scale(1.1);
-        transition: filter 0.3s ease;
+        transition: filter scale 0.3s ease;
     };
 `;
 

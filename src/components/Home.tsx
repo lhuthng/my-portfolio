@@ -24,7 +24,7 @@ const ButtonContainer = styled(HContainer)`
     gap: 5rem;
 `
 const Avatar = styled.img`
-    
+    filter: drop-shadow(0 0 0.2rem purple);
 `;
 
 const GreetingText = styled.div`
