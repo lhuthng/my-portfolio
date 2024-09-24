@@ -36,18 +36,18 @@ import flstudioIcon from '../images/flstudio-icon.png';
 const MainContainer = styled(HContainer)`
     align-items: normal;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
 `;
 
 const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     align-items: normal;
     flex-direction: ${({$isLeft}) => $isLeft ? 'row-reverse' : 'row'};
-    gap: 1rem;
+    gap: 0.5rem;
     width: 40%;
 `;
 
 const SkillsContainer = styled(VContainer)`
-    gap: 1rem;
+    gap: 0.5rem;
 `;
 
 const DevContainer = styled(SkillsContainer)`
@@ -60,11 +60,14 @@ const ArtContainer = styled(SkillsContainer)`
 
 const CommonContainer = styled(SkillsContainer)`
     align-items: center;
+    padding: 1rem;
+    border-radius: 15px;
+    background-color:  rgba(230, 213, 255, 0.6);
 `;
 
 const TextOnlySkills = styled.span`
     color: #33069A;
-    text-shadow: 1px 1px 2px purple;
+    text-shadow: 1px 1px 6px yellow;
 `;
 
 const Skills: React.FC = () => {
@@ -136,10 +139,10 @@ const Skills: React.FC = () => {
             </Title>
             <MainContainer>
                 <SubContainer $isLeft={true}>
-                    <p>~Software Developer</p>
+                    <p><b>~Software Developer</b></p>
                 </SubContainer>
                 <SubContainer $isLeft={false}>
-                    <p>Digital Artist~</p>
+                    <p><b>Digital Artist~</b></p>
                 </SubContainer>
             </MainContainer>
             <MainContainer>
@@ -168,8 +171,8 @@ const Skills: React.FC = () => {
                 </SubContainer>                
             </MainContainer>
             <CommonContainer>
-                <p>~Both~</p>
-                {commonSkills.map((skill, index) => <TextOnlySkills key={index}>{skill}</TextOnlySkills>)}
+                <p><b>~Both~</b></p>
+                {commonSkills.map((skill, index) => <TextOnlySkills key={index}><b>{skill}</b></TextOnlySkills>)}
             </CommonContainer>
         </Layout>
     );

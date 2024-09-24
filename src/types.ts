@@ -9,9 +9,10 @@ export interface SectionProps {
 };
 
 export interface ImageButtonProps {
-    frameImage: string;
+    frameImage?: string;
     image: string;
     offset: number;
+    flipped?: boolean;
     onClick: () => void;
 };
 
@@ -31,9 +32,10 @@ export interface ProjectEntityProps {
     image: string;
     description: ReactNode;
     skills: string[],
-    category: 'program' | 'art',
+    category: 'program' | 'simple',
     link?: string;
-    expand?: ReactNode;
+    demo?: string;
+    glow?: string;
 };
 
 export interface SkillCategoryProps {
@@ -58,7 +60,7 @@ export const VContainer = styled.div`
 
 export const Layout = styled(VContainer)`
     font-family: Omori2;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     p {
         margin: 0;
         white-space: nowrap;

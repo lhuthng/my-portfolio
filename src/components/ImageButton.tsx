@@ -28,23 +28,26 @@ const FrameImage = styled.img<{offset: number}>`
     z-index: 2;
 `;
 
-const MainImage = styled.img<{offset: number}>`
+const MainImage = styled.img<{offset: number, $flipped?: boolean}>`
     position: absolute;
     top: ${({offset}) => offset}px;
     justify-content: center;
     z-index: 1;
+    transform: ${({ $flipped }) => $flipped ? 'scaleY(-1)' : 'none'};
+    transition: transform 1s ease;
 `;
 
 const ImageButton : React.FC<ImageButtonProps> = ({
     frameImage,
     image,
     offset,
+    flipped,
     onClick
 }) => {
     return (
         <StyledButton onClick={onClick}>
-            <FrameImage offset={offset} src={frameImage}></FrameImage>
-            <MainImage offset={offset} src={image}></MainImage>
+            {frameImage && <FrameImage offset={offset} src={frameImage}></FrameImage>}
+            <MainImage offset={offset} src={image} $flipped={flipped} ></MainImage>
         </StyledButton>
     );
 };

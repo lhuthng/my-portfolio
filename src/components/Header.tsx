@@ -17,8 +17,15 @@ const StyledHeader = styled.header`
     position: sticky;
     top: 0;
     z-index: 3;
-    background-color: #f0f0f0;
-    padding: 1rem;
+    background-color: rgba(230, 213, 255, 1);
+    padding {
+        bottom: 3rem;
+    };
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: 3px solid black;
+    border-top: 0;
+    transition: border-top-left-radius 0.3s ease, border-top-right-radius 0.3s ease; /* Smooth transition */
 `;
 
 interface HeaderProps {

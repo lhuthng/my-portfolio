@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import ImageButton from './ImageButton';
 import WavingLetter from './WavingLetter';
 import { HContainer, VContainer } from '../types';
+import { openWindow } from '../common';
 import avatar from '../images/avatar.png';
 import frame from '../images/frame.png';
 import githubIcon from '../images/github-icon.png';
@@ -10,16 +11,17 @@ import linkedinIcon from '../images/linkedin-icon.png';
 import artstationIcon from '../images/artstation-icon.png';
 
 const GapHContainer = styled(HContainer)`
-    padding: 2rem;
-    gap: 5rem;
-    background-color: rgba(230, 213, 255, 0.8);
+    padding: 1rem;
+    gap: 2rem;
+    background-color: rgba(230, 213, 255, 0.9);
     border: 0.2rem dashed purple;
-    border-radius: 5rem;
+    border-radius: 2rem;
     filter: drop-shadow(0 0 0.2rem purple);
+    max-width: 60rem;
 `;
 
 const GapVContainer = styled(VContainer)`
-    padding: 2rem;
+    padding: 1rem;
     gap: 1rem;
 `;
 
@@ -43,17 +45,14 @@ const MapWavingTexts = (text: string, mult: number, offset: number) => text.spli
 ));
 
 const Home: React.FC = () => {
-    const openWindows = (link: string) => {
-        return () => { window.open(`https://www.${link}`, '_blank'); }
-    }
     return (
         <GapHContainer>
             <GapVContainer>
                 <Avatar src={avatar} alt="Avatar"></Avatar>
                 <ButtonContainer>
-                    <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindows("github.com/lhuthng/")}></ImageButton>
-                    <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindows("linkedin.com/in/huuthangle/")}></ImageButton>
-                    <ImageButton offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindows("artstation.com/lhuthng")}></ImageButton>
+                    <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
+                    <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
+                    <ImageButton offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
                 </ButtonContainer>
             </GapVContainer>
             <GreetingText>

@@ -9,18 +9,19 @@ const Layout = styled(VContainer)`
 `;
 
 const LGameProject: React.FC = () => {
-    const description: ReactNode = (
-        <Layout>
-            <span>The L Game is a compact project designed to showcase a variety of game development skills.</span>
-        </Layout>
-    );
+
     return (
         <ProjectEntity 
             name='L-Game'
             image={LGameThumbnail}
-            description={description}
-            skills={['pixel art', '2D animation', '2D transition', 'Music Composing', 'Game Programming', 'AI Programming', 'Network Programming']}
+            glow='pink'
+            description={<Layout>
+                <span>The L Game is a compact project designed to showcase a variety of game development skills.</span>
+            </Layout>}
+            skills={['Pixel Art', '2D Animation', '2D Transition', 'Music Composing', 'Game Programming', 'AI Programming', 'Network Programming']}
             category='program'
+            link='www.github.com/lhuthng/L-Game'
+            demo='https://thangvps.duckdns.org/apps/L-Game'
         />
     )
 };

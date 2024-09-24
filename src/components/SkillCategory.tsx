@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SkillEntity from './SkillEntity';
-import { SkillEntityProps, SkillCategoryProps, VContainer } from '../types';
+import { SkillCategoryProps, VContainer } from '../types';
 
 const Container = styled(VContainer)<{$isLeft: boolean}>`
     padding: 1rem;
@@ -14,7 +14,7 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
     border-top-left-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
     border-top-right-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
     align-items: ${({ $isLeft }) => $isLeft ? 'flex-end' : 'flex-start'};
-    background-color: rgba(230, 213, 255, 0.8);
+    background-color: rgba(230, 213, 255, 0.9);
     filter: drop-shadow(0 0 0.1rem purple);
     p {
         margin: 0;

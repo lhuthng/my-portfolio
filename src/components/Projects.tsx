@@ -1,48 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { HContainer, VContainer, Layout, Title } from '../types';
 import LGameProject from './projects/LGameProject';
+import styled from 'styled-components';
+import RecorderVisualizationProject from './projects/RecorderVisualizationProject';
+import NetworkVisualizationProject from './projects/NetworkVisualizationProject';
+import Square1HelperProject from './projects/Square1HelperProject';
+import VMWareProject from './projects/VMWareProject';
+import ArtGallery from './projects/ArtGallery';
+
+const StyledLayout = styled(Layout)`
+    font-size: 1.8rem;
+    gap: 2rem;
+`
+
+const Galery = styled.div`
+    background-color: rgba(230, 213, 255, 0.6);
+`;
 
 const Projects: React.FC = () => {
-    // const appUrl = `https://thangvps.duckdns.org/apps/L-Game`
-    // const [iframeSize, setIframeSize] = useState<{ width: number, height: number } | null>(null);
-    // useEffect(() => {
-    //     console.log("Hi");
-    //     const fetchSize = async() => {
-    //         try {
-    //             const response = await fetch(`${appUrl}/size`);
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             const size = await response.json();
-    //             setIframeSize(size);
-    //         } 
-    //         catch (error) {
-    //             console.error('Error fetching size: ', error);
-    //         }
-    //     };
-    //     fetchSize();
-    // }, [])
-    // return (
-    //     <Layout>
-    //         <Title>
-    //             <h1>~Projects~</h1>
-    //         </Title>
-    //         {iframeSize && (
-    //             <iframe 
-    //                 src={appUrl}
-    //                 width={iframeSize.width + 5}
-    //                 height={iframeSize.height + 5}
-    //             />
-    //         )}
-    //     </Layout>
-    // )
     return (
-        <Layout>
+        <StyledLayout>
             <Title>
                 <h1>~Projects~</h1>
             </Title>
             <LGameProject />
-        </Layout>
+            <RecorderVisualizationProject />
+            <Square1HelperProject />
+            <NetworkVisualizationProject />
+            <VMWareProject />
+            <ArtGallery />
+            
+        </StyledLayout>
     )
 };
 
