@@ -53,12 +53,14 @@ export default function StarBackground(props: Props) {
 					setCanvasExtents();
 				};
 
+				const initialWidth = Math.max(window.innerWidth, 1920);
+				const initialHeight = Math.max(window.innerHeight, 1080)
 				const makeStars = (count: number) => {
 					const out = [];
 					for (let i = 0; i < count; i++) {
 						const s = {
-                            x: Math.random() * window.innerWidth - window.innerWidth / 2,
-                            y: Math.random() * window.innerHeight - window.innerHeight / 2,
+                            x: Math.random() * initialWidth,
+                            y: Math.random() * initialHeight,
                             type: Math.floor(Math.random() * 3),
                             a: Math.random(),
                             r: (0.2 + Math.random() * 0.8) / 50
@@ -72,8 +74,8 @@ export default function StarBackground(props: Props) {
                     const out = [];
                     for (let i = 0; i < count; i++) {
                         out.push({
-                            x: Math.random() * window.innerWidth - window.innerWidth / 2,
-                            y: Math.random() * window.innerHeight - window.innerHeight / 2,
+                            x: Math.random() * initialWidth,
+                            y: Math.random() * initialHeight,
                             r: Math.random() * 3.14,
                             index: Math.floor(Math.random() * backgroundObjects.length),
                             d: {
@@ -127,7 +129,7 @@ export default function StarBackground(props: Props) {
                             star.a = -star.a;
                             star.r *= -1;
                         }
-						putPixel(canvas.width / 2 + x, canvas.height / 2 + y, star.type, star.a);
+						putPixel(x, y, star.type, star.a);
 					}
                     for (var i = 0; i < objects.length; i++) {
                         const object = objects[i];
@@ -135,8 +137,8 @@ export default function StarBackground(props: Props) {
                         object.y += object.d.y;
                         object.r += object.d.r;
                         const image = backgroundObjects[object.index];
-                        const x = canvas.width / 2 + object.x;
-                        const y = canvas.height / 2 + object.y;
+                        const x = object.x;
+                        const y = object.y;
                         c.translate(x, y);
                         c.rotate(object.r);
                         c.drawImage(image, 
@@ -168,7 +170,7 @@ export default function StarBackground(props: Props) {
 		return () => {
 			window.onresize = null;
 		};
-	}, [backgroundColor, speedFactor, starCount]);
+	}, [backgroundColor, speedFactor, starCount, objectCount]);
 
 	return (
 		<canvas

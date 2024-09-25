@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import './App.css';
 import styled from 'styled-components';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { SectionProps, VContainer } from './types';
 import StarBackground from './components/StarBackground';
 
@@ -64,6 +65,7 @@ const App: React.FC = () => {
         {sectionReferences.map((section, index) => (
           <Section key={index} ref={section.ref}><section.component /></Section>
         ))}
+        <Footer> </Footer>
       </SectionContainer>
     </PageContainer>
   );

@@ -56,7 +56,7 @@ const Home: React.FC = () => {
                 </ButtonContainer>
             </GapVContainer>
             <GreetingText>
-                Hi, I'm Thang <br />
+                Hi, I'm <b>Thang</b> <br />
                 {MapWavingTexts("an-enthusiastic-developer", 50, 0)} and <br />
                 {MapWavingTexts("a-digital-artist", 50, 0)}. <br />
                 I'm passionate about applying my knowledge to develop innovative solutions that optimize processes and drive efficiency.

@@ -70,6 +70,7 @@ export const Layout = styled(VContainer)`
 export const Title = styled(VContainer)`
     h1 {
         font-family: Omori1;
+        font-size: 4rem;
         margin: 0;
     };
     p {
