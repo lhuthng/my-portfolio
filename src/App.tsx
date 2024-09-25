@@ -13,19 +13,22 @@ import StarBackground from './components/StarBackground';
 
 //  background-color: #6B0BFD;
 const PageContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   background: linear-gradient(to bottom, #6B0BFD, black);
 `;
 
 const SectionContainer = styled(VContainer)`
-  width: 90rem;
+  width: 90%;
+  max-width: 80rem;
   background: linear-gradient(to bottom, rgba(230, 213, 255, 0.4), rgba(230, 213, 255, 0.8));
 `
 
 const Section = styled.section`
-  max-width: 75rem;
+  max-width: 90%;
   text-align: center;
+
 `;
 
 const CreateSectioRef = (name: string, component: React.FC) => {
@@ -65,7 +68,7 @@ const App: React.FC = () => {
         {sectionReferences.map((section, index) => (
           <Section key={index} ref={section.ref}><section.component /></Section>
         ))}
-        <Footer> </Footer>
+        <Footer />
       </SectionContainer>
     </PageContainer>
   );

@@ -44,6 +44,9 @@ const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     flex-direction: ${({$isLeft}) => $isLeft ? 'row-reverse' : 'row'};
     gap: 0.5rem;
     width: 40%;
+    @media (max-width: 85rem) {
+        flex-direction: column;
+    }
 `;
 
 const SkillsContainer = styled(VContainer)`
@@ -60,6 +63,7 @@ const ArtContainer = styled(SkillsContainer)`
 
 const CommonContainer = styled(SkillsContainer)`
     align-items: center;
+    margin-top: 2rem;
     padding: 1rem;
     border-radius: 15px;
     background-color:  rgba(230, 213, 255, 0.6);

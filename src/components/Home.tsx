@@ -18,6 +18,10 @@ const GapHContainer = styled(HContainer)`
     border-radius: 2rem;
     filter: drop-shadow(0 0 0.2rem purple);
     max-width: 60rem;
+    @media (max-width: 60rem) {
+        flex-direction: column;
+        margin-left
+    }
 `;
 
 const GapVContainer = styled(VContainer)`
@@ -38,6 +42,7 @@ const GreetingText = styled.div`
     font-size: 2rem;
     font-family: Omori2;
     text-align: left;
+    margin: 1rem;
 `;
 
 const MapWavingTexts = (text: string, mult: number, offset: number) => text.split("").map((letter, index) => (

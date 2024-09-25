@@ -34,4 +34,4 @@ const Footer: React.FC = () => {
     )
 };
 
-export default StyledFooter;
+export default Footer;

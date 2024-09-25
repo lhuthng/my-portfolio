@@ -14,14 +14,16 @@ import FJ2 from '../images/FJ2.jpg';
 import LG from '../images/LG.gif';
 import P3D from '../images/P3D.gif';
 import RC from '../images/RC.gif';
+import SKB from '../images/SKB.png'
 const arts: { src: string, isVideo?: boolean }[] = [
     {src: T}, {src: DST}, {src: ROR}, {src: GXT}, 
     {src: FJ1}, {src: FJ2}, {src: LG}, {src: P3D},
     {src: C}, {src: RC},{src: BM}, {src: TC},
-    {src: "iyF47LeZbYA?si=kiVC1G4bXQPqvkr-", isVideo: true}, 
-    {src: "CvFFNvUtiLs?si=9rryTpAZAfm-2oZV", isVideo: true},
-    {src: "htTeYQOtIAY?si=LLxb7WJq7pDBT1-Z", isVideo: true}, 
-    {src: "1LdbmE6BCKA?si=oP5hCJcih1oiYEK9", isVideo: true}
+    {src: "iyF47LeZbYA", isVideo: true}, 
+    {src: "CvFFNvUtiLs", isVideo: true},
+    {src: "htTeYQOtIAY", isVideo: true}, 
+    {src: "1LdbmE6BCKA", isVideo: true},
+    {src: SKB}
 ] 
 
 
@@ -48,6 +50,16 @@ const Title = styled.div`
 const GalleryContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 75rem) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 60rem) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 45rem) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+        
     grid-gap: 10px;
     img {
         min-width: 100%;
@@ -75,8 +87,8 @@ const Thumbnail = styled.img`
     filter: drop-shadow(0 0 0.2rem purple);
 `;
 
-const Lightbox = styled.div<{ isOpen: boolean }>`
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+const Lightbox = styled.div<{ $isOpen: boolean }>`
+    display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
     position: fixed;
     top: 0;
     left: 0;
@@ -116,19 +128,17 @@ const ArtGallery: React.FC = () => {
                 {
                     arts.map((art, index) => (
                     !art.isVideo ? 
-                        <Thumbnail
-                            key={index}
+                        <Thumbnail key={index}
                             src={art.src}
                             alt={`Image ${index + 1}`}
                             onClick={() => openLightbox(art.src)}
-                        /> : <IframeContainer><iframe 
-                            key={index}
+                        /> : <IframeContainer key={index}><iframe 
                             style={{
                                 width:'15rem',
                                 height:'15rem',
                                 borderRadius:'1rem'
                             }}
-                            src={"https://www.youtube.com/embed/" + art.src + "&modestbranding=1&showinfo=0"} 
+                            src={"https://www.youtube.com/embed/" + art.src} 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerPolicy="strict-origin-when-cross-origin" 
                             allowFullScreen
@@ -137,7 +147,7 @@ const ArtGallery: React.FC = () => {
                 }
             </GalleryContainer>
 
-            <Lightbox isOpen={lightboxOpen} onClick={closeLightbox}>{selectedImage && (
+            <Lightbox $isOpen={lightboxOpen} onClick={closeLightbox}>{selectedImage && (
                 <LightboxImage src={selectedImage} alt="Enlarged Image" />
             )}</Lightbox>
         </VContainer>
