@@ -43,6 +43,10 @@ const MainContainer = styled(HContainer)`
     }
 `;
 
+const StyledVContainer = styled(VContainer)<{$isLeft: boolean}>`
+    align-items: ${({$isLeft}) => $isLeft ? 'flex-end' : 'flex-start'};
+`;
+
 const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     align-items: normal;
     flex-direction: ${({$isLeft}) => $isLeft ? 'row-reverse' : 'row'};
@@ -151,31 +155,35 @@ const Skills: React.FC = () => {
                 <p>for</p>
             </Title>
             <MainContainer>
-                <SubContainer $isLeft={true}>
+                <StyledVContainer $isLeft={true}>
                     <p><b>~Software Developer</b></p>
-                    <DevContainer>
-                        <SkillCategory name="Front-end dev" skills={frontEndSkills} isLeft={true}></SkillCategory>
-                        <SkillCategory name="Back-end dev" skills={backEndSkills} isLeft={true}></SkillCategory>
-                        <SkillCategory name="Database management" skills={databaseManagementSkills} isLeft={true}></SkillCategory>
-                    </DevContainer> 
-                    <DevContainer>
-                        <SkillCategory name="Desktop app dev" skills={desktopAppDevSkills} isLeft={true}></SkillCategory>
-                        <SkillCategory name="OS" skills={OSFamiliar} isLeft={true}></SkillCategory>
-                        <SkillCategory name="Additional" skills={additionalSkills} isLeft={true}></SkillCategory>
-                    </DevContainer>
-                </SubContainer>
-                <SubContainer $isLeft={false}>
+                    <SubContainer $isLeft={true}>
+                        <DevContainer>
+                            <SkillCategory name="Front-end dev" skills={frontEndSkills} isLeft={true}></SkillCategory>
+                            <SkillCategory name="Back-end dev" skills={backEndSkills} isLeft={true}></SkillCategory>
+                            <SkillCategory name="Database management" skills={databaseManagementSkills} isLeft={true}></SkillCategory>
+                        </DevContainer> 
+                        <DevContainer>
+                            <SkillCategory name="Desktop app dev" skills={desktopAppDevSkills} isLeft={true}></SkillCategory>
+                            <SkillCategory name="OS" skills={OSFamiliar} isLeft={true}></SkillCategory>
+                            <SkillCategory name="Additional" skills={additionalSkills} isLeft={true}></SkillCategory>
+                        </DevContainer>
+                    </SubContainer>
+                </StyledVContainer>
+                <StyledVContainer $isLeft={false}>
                     <p><b>Digital Artist~</b></p>
-                    <ArtContainer>
-                        <SkillCategory name="2D Illustation" skills={illustrationSkills} isLeft={false}></SkillCategory>
-                        <SkillCategory name="3D Modeling" skills={modelingSkills} isLeft={false}></SkillCategory>
-                    </ArtContainer>
-                    <ArtContainer>
-                        <SkillCategory name="Video editing" skills={videoEditingSkills} isLeft={false}></SkillCategory>
-                        <SkillCategory name="Image editing" skills={imageEditingSkills} isLeft={false}></SkillCategory>
-                        <SkillCategory name="Music production" skills={musicProductionSkills} isLeft={false}></SkillCategory>
-                    </ArtContainer>
-                </SubContainer>                
+                    <SubContainer $isLeft={false}>
+                        <ArtContainer>
+                            <SkillCategory name="2D Illustation" skills={illustrationSkills} isLeft={false}></SkillCategory>
+                            <SkillCategory name="3D Modeling" skills={modelingSkills} isLeft={false}></SkillCategory>
+                        </ArtContainer>
+                        <ArtContainer>
+                            <SkillCategory name="Video editing" skills={videoEditingSkills} isLeft={false}></SkillCategory>
+                            <SkillCategory name="Image editing" skills={imageEditingSkills} isLeft={false}></SkillCategory>
+                            <SkillCategory name="Music production" skills={musicProductionSkills} isLeft={false}></SkillCategory>
+                        </ArtContainer>
+                    </SubContainer>        
+                </StyledVContainer>
             </MainContainer>
             <CommonContainer>
                 <p><b>~Both~</b></p>

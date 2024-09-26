@@ -16,6 +16,10 @@ const Layout = styled(VContainer)`
     border-radius: 2rem;
     filter: drop-shadow(0 0 0.2rem purple);
     padding: 1rem;
+    
+    @media (max-width: 60rem) {
+        margin-bottom: 2rem;
+    }
 `;
 
 const MainContainer = styled(HContainer)`
@@ -104,6 +108,9 @@ const ExpansionContainer = styled.div<{height: number}>`
 
 const ExpandButton = styled(ImageButton)`
     width: 100%;
+    img {
+        z-index: 10;
+    }
 `;
 
 const ProjectEntity: React.FC<ProjectEntityProps> = ({
@@ -177,7 +184,7 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                 {category == 'simple' && <img src={demo}></img>}
                 {iframeSize && <iframe src={iframeSrc} width={iframeSize.width + 5} height={iframeSize.height + 5} />}
             </ExpansionContainer>}
-            {demo && (category == 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-40} flipped={expanded}/>}
+            {demo && (category == 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded}/>}
         </Layout>
     )
 };
