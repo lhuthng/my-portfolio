@@ -37,6 +37,10 @@ const MainContainer = styled(HContainer)`
     align-items: normal;
     justify-content: center;
     gap: 1rem;
+    @media (max-width: 45rem) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
@@ -46,6 +50,7 @@ const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     width: 40%;
     @media (max-width: 85rem) {
         flex-direction: column;
+        align-items: center;
     }
 `;
 
@@ -55,10 +60,14 @@ const SkillsContainer = styled(VContainer)`
 
 const DevContainer = styled(SkillsContainer)`
     align-items: flex-end;
+    @media (max-width: 45rem) {
+        align-items: 
+    }
 `;
 
 const ArtContainer = styled(SkillsContainer)`
     align-items: flex-start;
+    
 `;
 
 const CommonContainer = styled(SkillsContainer)`
@@ -144,13 +153,6 @@ const Skills: React.FC = () => {
             <MainContainer>
                 <SubContainer $isLeft={true}>
                     <p><b>~Software Developer</b></p>
-                </SubContainer>
-                <SubContainer $isLeft={false}>
-                    <p><b>Digital Artist~</b></p>
-                </SubContainer>
-            </MainContainer>
-            <MainContainer>
-                <SubContainer $isLeft={true}>    
                     <DevContainer>
                         <SkillCategory name="Front-end dev" skills={frontEndSkills} isLeft={true}></SkillCategory>
                         <SkillCategory name="Back-end dev" skills={backEndSkills} isLeft={true}></SkillCategory>
@@ -163,6 +165,7 @@ const Skills: React.FC = () => {
                     </DevContainer>
                 </SubContainer>
                 <SubContainer $isLeft={false}>
+                    <p><b>Digital Artist~</b></p>
                     <ArtContainer>
                         <SkillCategory name="2D Illustation" skills={illustrationSkills} isLeft={false}></SkillCategory>
                         <SkillCategory name="3D Modeling" skills={modelingSkills} isLeft={false}></SkillCategory>
