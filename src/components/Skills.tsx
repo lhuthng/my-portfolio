@@ -54,7 +54,7 @@ const SubContainer = styled(HContainer)<{$isLeft: boolean}>`
     width: 40%;
     @media (max-width: 85rem) {
         flex-direction: column;
-        align-items: center;
+        align-items: normal;
     }
 `;
 
