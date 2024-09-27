@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect} from 'react';
 import { VContainer } from '../types';
 import pageBreaker from '../images/page-breaker.png';
 import smallPageBreaker from '../images/page-breaker-small.png';
-import styled from 'styled-components';
 
 
 const PageBreaker: React.FC = () => {
