@@ -16,6 +16,7 @@ import P3D from '../images/P3D.gif';
 import RC from '../images/RC.gif';
 import SKB from '../images/SKB.png';
 import ONN from '../images/ONN.gif';
+import E from '../images/E.png';
 const arts: { src: string, isVideo?: boolean }[] = [
     {src: T}, {src: DST}, {src: ROR}, {src: GXT}, 
     {src: FJ1}, {src: FJ2}, {src: LG}, {src: P3D},
@@ -24,7 +25,7 @@ const arts: { src: string, isVideo?: boolean }[] = [
     {src: "CvFFNvUtiLs", isVideo: true},
     {src: "htTeYQOtIAY", isVideo: true}, 
     {src: "1LdbmE6BCKA", isVideo: true},
-    {src: SKB}, {src: ONN}
+    {src: SKB}, {src: ONN}, {src: E}
 ] 
 
 
