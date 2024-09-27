@@ -102,8 +102,10 @@ const ExpansionContainer = styled.div<{height: number}>`
         border: 3px solid black;
         background-color: purple;
         filter: drop-shadow(0 0 0.2rem purple);
-        width: 100%;
+        overflow: hidden;
     }
+
+    max-width: 100%;
 `;
 
 const ExpandButton = styled(ImageButton)`

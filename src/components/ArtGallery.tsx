@@ -123,7 +123,7 @@ const ArtGallery: React.FC = () => {
     return (
         <VContainer>
             <Title>
-                <span><b>Galleries: </b></span>
+                <span><b>Media Gallery: </b></span>
             </Title>
             <GalleryContainer>
                 {
