@@ -11,6 +11,7 @@ import netVisGif from '../images/net-vis.gif';
 import mulIpThumbnail from '../images/multiple-ips-thumbnail.png';
 import geneticThumbnail from '../images/genetic-thumbnail.png';
 import portfolioThumbnail from '../images/portfolio-thumbnail.png'
+import orbtNNThumbnail from '../images/orbt-nn-thumbnail.png';
 
 const StyledLayout = styled(Layout)`
     font-size: 1.8rem;
@@ -89,6 +90,13 @@ const projects: ProjectEntityProps[] = [
         ['UI Programming', 'Genetic Programming', 'Java', 'Image Processing'],
         'program', 'purple',
         'github.com/lhuthng/genetic-image-reconstruction'
+    ),
+    assign(
+        'Orbt-Trainer', orbtNNThumbnail,
+        (<span>This project is inspired with using genetic programming on a neural network to play a game called <a href='https://store.steampowered.com/app/615610/Orbt_XL/'>OrbtXL</a>. The goal is to maximize scores gaining from surviving a round or nearly touching an asteroid.</ span>),
+        ['Genetic Programming', 'Neural Network', 'C# Programming'],
+        'program', 'orange',
+        'github.com/thnglhu/OrbtNN'
     )
 ];
 
