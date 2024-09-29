@@ -19,8 +19,9 @@ const PageBreaker: React.FC = () => {
         return () => {
             if (ref.current) resizeObserver.unobserve(ref.current);
         }
-    }, 
-    []);
+
+        return () => resizeObserver.disconnect();
+    }, []);
 
     return (
         <VContainer 

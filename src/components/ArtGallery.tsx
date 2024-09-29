@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { VContainer } from '../types';
 import { convertRemToPixels } from '../common';
@@ -17,6 +17,7 @@ import RC from '../images/RC.gif';
 import SKB from '../images/SKB.png';
 import ONN from '../images/ONN.gif';
 import E from '../images/E.png';
+
 const arts: { src: string, isVideo?: boolean }[] = [
     {src: T}, {src: DST}, {src: ROR}, {src: GXT}, 
     {src: FJ1}, {src: FJ2}, {src: LG}, {src: P3D},
@@ -28,11 +29,24 @@ const arts: { src: string, isVideo?: boolean }[] = [
     {src: SKB}, {src: ONN}, {src: E}
 ] 
 
+const MainContainer = styled(VContainer) `
+    width: 100%;
+`
 
-const IframeContainer = styled.div`
-    width: 15rem;
-    height: 15rem;
+const ContentContainer = styled.div<{ size: number }>`
+    width: ${({ size }) => size}rem;
+    height: ${({ size }) => size}rem;
     border-radius: 1rem;
+    image {
+        width: ${({ size }) => size}rem;
+        height: ${({ size }) => size}rem;
+        border-radius: 1rem;
+    }
+    iframe {
+        width: ${({ size }) => size}rem;
+        height: ${({ size }) => size}rem;
+        border-radius: 1rem;
+    }
 `;
 
 const Title = styled.div`
@@ -58,9 +72,9 @@ const GalleryContainer = styled.div`
     @media (max-width: 60rem) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media (max-width: 45rem) {
-        grid-template-columns: repeat(1, 1fr);
-    }
+    // @media (max-width: 45rem) {
+    //     grid-template-columns: repeat(1, 1fr);
+    // }
         
     grid-gap: 10px;
     img {
@@ -76,11 +90,11 @@ const GalleryContainer = styled.div`
 `;
 
 const Thumbnail = styled.img`
-    width: 15rem;
-    height: 15rem;
+    width: 100%;
+    height: auto;
     cursor: pointer;
-    box-sizing: border-box;
     border-radius: 1rem;
+    box-sizing: border-box;
     &:hover {
         transform: translateY(-0.75rem);
         filter: brightness(1.2);
@@ -112,39 +126,56 @@ const LightboxImage = styled.img`
 const ArtGallery: React.FC = () => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [toggle, setToggle] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
 
     const openLightbox = (image: string) => {
-    setSelectedImage(image);
-    setLightboxOpen(true);
+        setSelectedImage(image);
+        setLightboxOpen(true);
     };
 
     const closeLightbox = () => {
-    setLightboxOpen(false);
+        setLightboxOpen(false);
     };
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            if (ref.current) {
+                const width = ref.current.clientWidth;
+                setToggle(width < convertRemToPixels(32));
+                console.log(width + " " + convertRemToPixels(34));
+            }
+        }
+    
+        const resizeObserver = new ResizeObserver(handleResize)
+
+        if (ref.current) {
+          resizeObserver.observe(ref.current);
+        }
+    
+        return () => resizeObserver.disconnect();
+    }, [toggle]);
+
     return (
-        <VContainer>
+        <MainContainer ref={ref}>
             <Title>
                 <span><b>Media Gallery: </b></span>
             </Title>
-            <GalleryContainer>
+            <GalleryContainer >
                 {
                     arts.map((art, index) => (
-                    !art.isVideo ? 
-                        <Thumbnail key={index}
-                            src={art.src}
-                            alt={`Image ${index + 1}`}
-                            onClick={() => openLightbox(art.src)}
-                        /> : <IframeContainer key={index}><iframe 
-                            style={{
-                                width:'15rem',
-                                height:'15rem',
-                                borderRadius:'1rem'
-                            }}
-                            src={"https://www.youtube.com/embed/" + art.src} 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerPolicy="strict-origin-when-cross-origin" 
-                            allowFullScreen
-                        /></IframeContainer>
+                        <ContentContainer key={index} size={toggle ? 7.5 : 15}>
+                            {!art.isVideo ? <Thumbnail key={index}
+                                src={art.src}
+                                alt={`Image ${index + 1}`}
+                                onClick={() => openLightbox(art.src)}
+                            /> : <iframe 
+                                src={"https://www.youtube.com/embed/" + art.src} 
+                                allow="encrypted-media; gyroscope; picture-in-picture" 
+                                referrerPolicy="strict-origin-when-cross-origin" 
+                                allowFullScreen />}
+                        </ContentContainer>
                     ))
                 }
             </GalleryContainer>
@@ -152,7 +183,7 @@ const ArtGallery: React.FC = () => {
             <Lightbox $isOpen={lightboxOpen} onClick={closeLightbox}>{selectedImage && (
                 <LightboxImage src={selectedImage} alt="Enlarged Image" />
             )}</Lightbox>
-        </VContainer>
+        </MainContainer>
     );
 };
 

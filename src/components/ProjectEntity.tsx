@@ -155,7 +155,7 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
     useEffect(() => {
         setExpansionHeight(0);
         const fetchSize = async() => {
-            if (demo == undefined || category === 'simple') return;
+            if (demo === undefined || category === 'simple') return;
             try {
                 const response = await fetch(`${demo}/size`);
                 if (!response.ok) {
@@ -170,7 +170,7 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
             }
         };
         fetchSize();
-    }, []);
+    }, [ expanded ]);
 
     const layoutRef = useRef<HTMLDivElement>(null);
 
@@ -194,10 +194,10 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                 </DescriptionContainer>
             </MainContainer>
             {demo && <ExpansionContainer ref={ref} height={expansionHeight}>
-                {category == 'simple' && <StyledImage src={demo} />}
-                {iframeSize && <iframe src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
+                {category === 'simple' && <StyledImage src={demo} />}
+                {iframeSize && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
             </ExpansionContainer>}
-            {demo && (category == 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded}/>}
+            {demo && (category === 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded}/>}
         </Layout>
     )
 };
