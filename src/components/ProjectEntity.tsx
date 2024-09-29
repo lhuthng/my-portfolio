@@ -98,11 +98,19 @@ const ExpansionContainer = styled.div<{height: number}>`
     transition: height 1s ease;
     overflow: hidden;
     img, iframe {
-        margin: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         border: 3px solid black;
         background-color: purple;
         filter: drop-shadow(0 0 0.2rem purple);
         overflow: hidden;
+    }
+
+    img {
+        box-sizing: border-box;
+        width: auto; 
+        max-width: 100%;
+        height: auto;
     }
 
     max-width: 100%;
@@ -113,6 +121,9 @@ const ExpandButton = styled(ImageButton)`
     img {
         z-index: 10;
     }
+`;
+
+const StyledImage = styled.img`
 `;
 
 const ProjectEntity: React.FC<ProjectEntityProps> = ({
@@ -127,18 +138,18 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
 }) => {
     const [expanded, setExpanded] = useState(false);
     const [iframeSize, setIframeSize] = useState<{ width: number, height: number} | null>(null);
+    const [iframeWidth, setIframeWidth] = useState(0);
     const [iframeSrc, setIframeSrc] = useState("about:blank");
     const [expansionHeight, setExpansionHeight] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
 
     const toggle = (isOn: boolean) => {
         setExpanded(isOn);
+        iframeSize && setIframeWidth(isOn ? iframeSize.width : 0);
         if (isOn && demo && iframeSrc === "about:blank") {
             setIframeSrc(demo);
         }
-        if (ref.current) {
-            setExpansionHeight(isOn ? ref.current.scrollHeight : 0);
-        }
+        ref.current && setExpansionHeight(isOn ? ref.current.scrollHeight : 0);
     };
 
     useEffect(() => {
@@ -183,8 +194,8 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                 </DescriptionContainer>
             </MainContainer>
             {demo && <ExpansionContainer ref={ref} height={expansionHeight}>
-                {category == 'simple' && <img src={demo}></img>}
-                {iframeSize && <iframe src={iframeSrc} width={iframeSize.width + 5} height={iframeSize.height + 5} />}
+                {category == 'simple' && <StyledImage src={demo} />}
+                {iframeSize && <iframe src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
             </ExpansionContainer>}
             {demo && (category == 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded}/>}
         </Layout>
