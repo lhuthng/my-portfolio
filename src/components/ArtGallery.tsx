@@ -17,37 +17,34 @@ import RC from '../images/RC.gif';
 import SKB from '../images/SKB.png';
 import ONN from '../images/ONN.gif';
 import E from '../images/E.png';
+import ArtEntity from './ArtEntity';
 
-const arts: { src: string, isVideo?: boolean }[] = [
-    {src: T}, {src: DST}, {src: ROR}, {src: GXT}, 
-    {src: FJ1}, {src: FJ2}, {src: LG}, {src: P3D},
-    {src: C}, {src: RC},{src: BM}, {src: TC},
+const arts: { src: string, desc?: string , isVideo?: boolean }[] = [
+    {src: T, desc: "Race/Rage On! - A gift for my friend how love racing."}, 
+    {src: DST, desc: "A funny moment of me and my friend playing Don't Starve Together."}, 
+    {src: ROR, desc: "Extended attacking animation from Risk of Rain's Mercenary."}, 
+    {src: GXT, desc: "When Dipper and Marbel from Gravity Falls visit a Terraria world."}, 
+    {src: FJ1, desc: "A short art of my fantasy journal with my friends."}, 
+    {src: FJ2, desc: "Part 2!! Planning and Attacking!!"}, 
+    {src: LG, desc: "A short demo of my L-Game, you should check above!"}, 
+    {src: P3D, desc: "A short video of my PIXEL 3D project on Blender"},
+    {src: C, desc: "Cool art of myself while playing the Control game"}, 
+    {src: RC, desc: "A short (not that short I spent half an hour to generate) of my Image Reconstruction project"},
+    {src: BM, desc: "A spritesheet I made to use on my bomber man project on Phaser."}, 
+    {src: TC, desc: "What come to my mind when I love Thinkpads and CATSSS"},
     {src: "iyF47LeZbYA", isVideo: true}, 
     {src: "CvFFNvUtiLs", isVideo: true},
     {src: "htTeYQOtIAY", isVideo: true}, 
     {src: "1LdbmE6BCKA", isVideo: true},
-    {src: SKB}, {src: ONN}, {src: E}
+    {src: SKB, desc: "A scene from my university project back to 2017"}, 
+    {src: ONN, desc: "Short demo of Orbt-Trainer above."},
+     {src: E, desc: "A collection of Baldur's Gate 3 Emoticons I made for my discord server."}
 ] 
 
 const MainContainer = styled(VContainer) `
     width: 100%;
 `
 
-const ContentContainer = styled.div<{ size: number }>`
-    width: ${({ size }) => size}rem;
-    height: ${({ size }) => size}rem;
-    border-radius: 1rem;
-    image {
-        width: ${({ size }) => size}rem;
-        height: ${({ size }) => size}rem;
-        border-radius: 1rem;
-    }
-    iframe {
-        width: ${({ size }) => size}rem;
-        height: ${({ size }) => size}rem;
-        border-radius: 1rem;
-    }
-`;
 
 const Title = styled.div`
     padding-left: 1rem;
@@ -89,20 +86,6 @@ const GalleryContainer = styled.div`
     filter: drop-shadow(0 0 0.2rem purple);
 `;
 
-const Thumbnail = styled.img`
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    border-radius: 1rem;
-    box-sizing: border-box;
-    &:hover {
-        transform: translateY(-0.75rem);
-        filter: brightness(1.2);
-    }
-    transition: all 0.1s ease-in-out;
-    filter: drop-shadow(0 0 0.2rem purple);
-`;
-
 const Lightbox = styled.div<{ $isOpen: boolean }>`
     display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
     position: fixed;
@@ -112,6 +95,9 @@ const Lightbox = styled.div<{ $isOpen: boolean }>`
     height: 100%;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.9);
+    span {
+        color: white;
+    }
 `;
 
 const LightboxImage = styled.img`
@@ -125,19 +111,20 @@ const LightboxImage = styled.img`
 
 const ArtGallery: React.FC = () => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<{src: string, desc: string} | null>(null);
     const [toggle, setToggle] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
-    const openLightbox = (image: string) => {
-        setSelectedImage(image);
+
+    const openLightbox = (image: string, desc: string) => {
+        setSelectedImage({src: image, desc: desc});
         setLightboxOpen(true);
     };
 
     const closeLightbox = () => {
         setLightboxOpen(false);
     };
-
+    
     useEffect(() => {
 
         const handleResize = () => {
@@ -165,23 +152,22 @@ const ArtGallery: React.FC = () => {
             <GalleryContainer >
                 {
                     arts.map((art, index) => (
-                        <ContentContainer key={index} size={toggle ? 7.5 : 15}>
-                            {!art.isVideo ? <Thumbnail key={index}
-                                src={art.src}
-                                alt={`Image ${index + 1}`}
-                                onClick={() => openLightbox(art.src)}
-                            /> : <iframe 
-                                src={"https://www.youtube.com/embed/" + art.src} 
-                                allow="encrypted-media; gyroscope; picture-in-picture" 
-                                referrerPolicy="strict-origin-when-cross-origin" 
-                                allowFullScreen />}
-                        </ContentContainer>
+                        <ArtEntity 
+                            src={art.src}
+                            size={toggle ? 10 : 15}
+                            onClick={openLightbox}
+                            desc={art.desc}
+                            isVideo={art.isVideo}
+                        />
                     ))
                 }
             </GalleryContainer>
 
             <Lightbox $isOpen={lightboxOpen} onClick={closeLightbox}>{selectedImage && (
-                <LightboxImage src={selectedImage} alt="Enlarged Image" />
+                <>
+                    <LightboxImage src={selectedImage.src} alt="Enlarged Image" />
+                    <span>{selectedImage.desc}</span>
+                </>                
             )}</Lightbox>
         </MainContainer>
     );

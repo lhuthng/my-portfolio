@@ -8,7 +8,7 @@ import linkIcon from '../images/link-icon.png';
 import expandIcon from '../images/more-icon.png';
 
 const Layout = styled(VContainer)`
-    width: 90%
+    width: 90%;
     max-width: 70rem;
     align-items: normal;
     background-color: rgba(230, 213, 255, 0.9);
