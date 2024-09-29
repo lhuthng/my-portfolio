@@ -20,7 +20,7 @@ import E from '../images/E.png';
 import ArtEntity from './ArtEntity';
 
 const arts: { src: string, desc?: string , isVideo?: boolean }[] = [
-    {src: T, desc: "Race/Rage On! - A gift for my friend how love racing."}, 
+    {src: T, desc: "Race/Rage On! - A gift for my friend who loves racing."}, 
     {src: DST, desc: "A funny moment of me and my friend playing Don't Starve Together."}, 
     {src: ROR, desc: "Extended attacking animation from Risk of Rain's Mercenary."}, 
     {src: GXT, desc: "When Dipper and Marbel from Gravity Falls visit a Terraria world."}, 
