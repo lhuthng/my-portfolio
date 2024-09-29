@@ -39,7 +39,7 @@ const projects: ProjectEntityProps[] = [
     assign(
         'This portfolio', portfolioThumbnail, 
         (<>
-            <span>A portfolio of mine showing things I'm interested. This website is also running on a <a href='https://github.com/lhuthng/app-server' >NodeJS</ a> server which hosts and handle connections.</span>
+            <span>A portfolio of mine showing things I'm interested. This website is also running on a <a href='https://github.com/lhuthng/app-server' >NodeJS</ a> server which hosts and handles connections.</span>
             <span>All images are hand-drawn using <b>Clip Studio Paint</b>. The intire page is strongly inspired by <a href='https://www.omori-game.com/'>Omori</a>'s artstyle.</span>
         </>), 
         ['React (Typescript)', 'NodeJS', 'Web Socket', 'UI Design', 'Clip Studio Paint'], 
@@ -79,7 +79,7 @@ const projects: ProjectEntityProps[] = [
     ),
     assign(
         'Multiple-Public-IPs', mulIpThumbnail,
-        (<span>This project takes advantage of virtual machines to connect to multiple VPNs simultaneously, without interrupting any existing connections when joining another network. (*Ahem*, I did't make this for especially logging like <b>15 video game accounts</b>).</span>),
+        (<span>This project takes advantage of virtual machines to connect to multiple VPNs simultaneously, without interrupting any existing connections when joining another network. (*Ahem*, I didn't make this for especially logging like <b>15 video game accounts</b>).</span>),
         ['VMWare', 'Linux', 'Network Configuration', 'Bash'],
         'program', 'lightgreen',
         'github.com/lhuthng/multiple-public-ips'

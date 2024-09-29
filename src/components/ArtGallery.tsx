@@ -31,7 +31,7 @@ const arts: { src: string, desc?: string , isVideo?: boolean }[] = [
     {src: C, desc: "Cool art of myself while playing the Control game"}, 
     {src: RC, desc: "A short (not that short I spent half an hour to generate) of my Image Reconstruction project"},
     {src: BM, desc: "A spritesheet I made to use on my bomber man project on Phaser."}, 
-    {src: TC, desc: "What come to my mind when I love Thinkpads and CATSSS"},
+    {src: TC, desc: "This is what came to my mind when I love Thinkpads and CATSSS"},
     {src: "iyF47LeZbYA", isVideo: true}, 
     {src: "CvFFNvUtiLs", isVideo: true},
     {src: "htTeYQOtIAY", isVideo: true}, 
