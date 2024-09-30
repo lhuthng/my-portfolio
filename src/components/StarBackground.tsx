@@ -26,8 +26,125 @@ const backgroundObjects = [ bo1, bo2, bo3, bo4, bo5, bo6, bo7, bo8, bo9, bo10, b
     return image;
 });
 
+class Star {
+	x: number;
+	y: number;
+	alpha: number;
+	dir: number;
+	type: number;
+	constructor(width: number, height: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.type = Math.floor(Math.random() * 3);
+		this.alpha = Math.random();
+		this.dir = (0.2 + Math.random() * 0.8) / 50;
+	}
+	
+	update(): Star {
+		this.alpha += this.dir;
+		if (this.alpha > 1 && this.dir > 0) {
+			this.alpha = 2 - this.alpha;
+			this.dir *= -1;
+		}
+		else if (this.alpha < 0 && this.dir < 0) {
+			this.alpha *= -1;
+			this.dir *= -1;
+		}
+		return this;
+	}
+	
+	draw(canvas: CanvasRenderingContext2D): Star {
+		const color = `rgba(255, 255, 255, ${this.alpha || 1})`;
+		canvas.fillStyle = color;
+		switch (this.type) {
+			case 1: 
+				canvas.fillRect(this.x, this.y, 2, 2); break;
+			case 2: 
+				canvas.fillRect(this.x + 2, this.y, 2, 6);
+				canvas.fillRect(this.x, this.y + 2, 6, 2);
+				break;
+			default:
+				canvas.fillRect(this.x, this.y, 4, 4); break;
+		}
+		return this;
+	}
+}
+
+class FloatingObject {
+	x: number;
+	y: number;
+	rotation: number;
+	index: number;
+	lifeTime: number;
+	dir: {
+		x: number;
+		y: number;
+		rotation: number;
+	}
+	alpha: number;
+	initialTime: number;
+	constructor(width: number, height: number, initialTime: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.rotation = Math.random() * 3.14;
+		this.index = Math.floor(Math.random() * backgroundObjects.length);
+		this.lifeTime = 10 + Math.random() * 50;
+		this.dir = {
+			x: (Math.random() - 0.5) / 6,
+			y: (Math.random() - 0.5) / 6,
+			rotation: ((Math.random() - 0.5) / 628),
+		}
+		this.initialTime = initialTime - Math.random() * this.lifeTime * 1000;
+		this.alpha = 0;
+	}
+	init(width: number, height: number, initialTime: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.rotation = Math.random() * 3.14;
+		this.index = Math.floor(Math.random() * backgroundObjects.length);
+		this.lifeTime = 10 + Math.random() * 50;
+		this.dir = {
+			x: (Math.random() - 0.5) / 6,
+			y: (Math.random() - 0.5) / 6,
+			rotation: ((Math.random() - 0.5) / 628)
+		}
+		this.initialTime = initialTime;
+		this.alpha = 0;
+	}
+	update(time: number, width: number, height: number): FloatingObject {
+		const { x: dx, y: dy, rotation: dr } = this.dir;
+		this.x += dx;
+		this.y += dy;
+		this.rotation += dr;
+		
+		const ellapsedTime = (time - this.initialTime) / 1000;
+		if (ellapsedTime > this.lifeTime) {
+			this.init(width, height, time);
+		}
+		else if (ellapsedTime > this.lifeTime / 2) {
+			this.alpha = 1 - (2 * ellapsedTime - this.lifeTime) / this.lifeTime;
+		}
+		else {
+			this.alpha = 1 - (this.lifeTime - 2 * ellapsedTime) / this.lifeTime;
+		}
+		return this;
+	}
+
+	draw(canvas: CanvasRenderingContext2D): FloatingObject {
+		const image = backgroundObjects[this.index];
+		canvas.translate(this.x ,this.y);
+		canvas.rotate(this.rotation);
+		canvas.globalAlpha = this.alpha;
+		canvas.drawImage(image, -image.width / 1, -image.height / 2);
+		canvas.globalAlpha = 1;
+		canvas.rotate(-this.rotation);
+		canvas.translate(-this.x, -this.y);
+		return this;
+	}
+}
+
 export default function StarBackground(props: Props) {
-	const { speedFactor = 0.05, backgroundColor = 'black', starCount = 2000, objectCount = 15 } = props;
+	const { speedFactor = 0.05, backgroundColor = 'black', starCount = 2000, objectCount = 30 } = props;
 
 	useEffect(() => {
 		const canvas = document.getElementById('starfield') as HTMLCanvasElement;
@@ -55,99 +172,23 @@ export default function StarBackground(props: Props) {
 
 				const initialWidth = Math.max(window.innerWidth, 1920);
 				const initialHeight = Math.max(window.innerHeight, 1080)
-				const makeStars = (count: number) => {
-					const out = [];
-					for (let i = 0; i < count; i++) {
-						const s = {
-                            x: Math.random() * initialWidth,
-                            y: Math.random() * initialHeight,
-                            type: Math.floor(Math.random() * 3),
-                            a: Math.random(),
-                            r: (0.2 + Math.random() * 0.8) / 50
-						};
-						out.push(s);
-					}
-					return out;
-				};
-
-                const makeObjects = (count: number) => {
-                    const out = [];
-                    for (let i = 0; i < count; i++) {
-                        out.push({
-                            x: Math.random() * initialWidth,
-                            y: Math.random() * initialHeight,
-                            r: Math.random() * 3.14,
-                            index: Math.floor(Math.random() * backgroundObjects.length),
-                            d: {
-                                x: (Math.random() - 0.5) / 10,
-                                y: (Math.random() - 0.5) / 10,
-                                r: ((Math.random() - 0.5) / 3141)
-                            }
-                        })
-                    }
-                    return out;
-                }
-
-				let stars = makeStars(starCount);
-                let objects = makeObjects(objectCount);
-
+				let stars: Star[];
+				let floatingObjects: FloatingObject[];
 				const clear = () => {
 					c.fillStyle = backgroundColor;
 					c.fillRect(0, 0, canvas.width, canvas.height);
 				};
 
-				const putPixel = (x: number, y: number, type?: number, alpha?: number) => {
-					const rgb = `rgba(255, 255, 255, ${alpha || 1})`;
-					c.fillStyle = rgb;
-                    switch (type) {
-                        case 1: 
-                            c.fillRect(x, y, 2, 2); break;
-                        case 2: 
-                            c.fillRect(x + 2, y, 2, 6);
-                            c.fillRect(x, y + 2, 6, 2);
-                            break;
-                        default:
-                            c.fillRect(x, y, 4, 4); break;
-                    }
-				};
-
 				const init = (time: number) => {
 					requestAnimationFrame(tick);
+					stars = Array.from({ length: starCount }, () => new Star(initialWidth, initialHeight));
+					floatingObjects = Array.from( { length: objectCount }, () => new FloatingObject(initialWidth, initialHeight, time));
 				};
 
 				const tick = (time: number) => {
 					clear();
-					for (var i = 0; i < stars.length; i++) {
-						const star = stars[i];
-                        const { x, y, a, r } = star;
-                        star.a += r;
-                        if (a > 1 && r > 0) {
-                            star.a = 2 - a;
-                            star.r *= -1;
-                        } 
-                        else if (a < 0 && r < 0) {
-                            star.a = -star.a;
-                            star.r *= -1;
-                        }
-						putPixel(x, y, star.type, star.a);
-					}
-                    for (var i = 0; i < objects.length; i++) {
-                        const object = objects[i];
-                        object.x += object.d.x;
-                        object.y += object.d.y;
-                        object.r += object.d.r;
-                        const image = backgroundObjects[object.index];
-                        const x = object.x;
-                        const y = object.y;
-                        c.translate(x, y);
-                        c.rotate(object.r);
-                        c.drawImage(image, 
-                            - image.width / 2, 
-                            - image.height / 2
-                        );
-                        c.rotate(-object.r);
-                        c.translate(-x, -y);
-                    }
+					stars.forEach(star => star.update().draw(c));
+					floatingObjects.forEach(floatingObject => floatingObject.update(time, initialWidth, initialHeight).draw(c));
 
 					requestAnimationFrame(tick);
 				};
