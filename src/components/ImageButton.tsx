@@ -15,24 +15,24 @@ const StyledButton = styled.button`
     transform-origin: center;
     filter: drop-shadow(0 0 0.2rem purple);
     &: hover {
-        filter: brightness(1.05);
+        filter: brightness(1.05) filter: drop-shadow(0 0 0.2rem purple);
         transform: scale(1.1);
-        transition: filter scale 0.3s ease;
     };
+    transition: filter 0.3s ease, transform 0.1s ease;
 `;
 
-const FrameImage = styled.img<{offset: number}>`
+const FrameImage = styled.img<{offset: number, zIndex: number}>`
     position: absolute;
     top: ${({offset}) => offset}px;
     justify-content: center;
-    z-index: 2;
+    z-index: ${({ zIndex }) => zIndex + 1};
 `;
 
-const MainImage = styled.img<{offset: number, $flipped?: boolean}>`
+const MainImage = styled.img<{offset: number, zIndex: number, $flipped?: boolean}>`
     position: absolute;
     top: ${({offset}) => offset}px;
     justify-content: center;
-    z-index: 1;
+    z-index: ${({ zIndex }) => zIndex};
     transform: ${({ $flipped }) => $flipped ? 'scaleY(-1)' : 'none'};
     transition: transform 1s ease;
 `;
@@ -42,12 +42,14 @@ const ImageButton : React.FC<ImageButtonProps> = ({
     image,
     offset,
     flipped,
+    zIndex,
     onClick
 }) => {
+    zIndex = zIndex ?? 1;
     return (
         <StyledButton onClick={onClick}>
-            {frameImage && <FrameImage offset={offset} src={frameImage}></FrameImage>}
-            <MainImage offset={offset} src={image} $flipped={flipped} ></MainImage>
+            {frameImage && <FrameImage zIndex={zIndex} offset={offset} src={frameImage}></FrameImage>}
+            <MainImage zIndex={zIndex} offset={offset} src={image} $flipped={flipped} ></MainImage>
         </StyledButton>
     );
 };

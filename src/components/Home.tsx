@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import ImageButton from './ImageButton';
 import WavingLetter from './WavingLetter';
 import { HContainer, VContainer } from '../types';
@@ -32,9 +32,16 @@ const GapVContainer = styled(VContainer)`
 const ButtonContainer = styled(HContainer)`
     padding: 2rem;
     gap: 5rem;
-`
+`;
+
+const glow = keyframes`
+    0% { filter: drop-shadow(0 0 0.2rem purple); }
+    50% { filter: drop-shadow(0 0 0.8rem purple); }
+    100% { filter: drop-shadow(0 0 0.2rem purple); }
+`;
+
 const Avatar = styled.img`
-    filter: drop-shadow(0 0 0.2rem purple);
+    animation: ${glow} 3s ease-in-out infinite;
 `;
 
 const GreetingText = styled.div`

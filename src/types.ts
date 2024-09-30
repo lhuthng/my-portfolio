@@ -10,6 +10,7 @@ export interface SectionProps {
 
 export interface ImageButtonProps {
     frameImage?: string;
+    zIndex?: number;
     image: string;
     offset: number;
     flipped?: boolean;

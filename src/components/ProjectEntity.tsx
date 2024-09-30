@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { HContainer, ProjectEntityProps, VContainer } from '../types';
 import { openWindow } from '../common';
 import ImageButton from './ImageButton';
@@ -40,7 +40,6 @@ const ThumbnailContainer = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
-    cursor: pointer;
     margin: 0;
     padding: 0;
 `;
@@ -56,6 +55,7 @@ const FrameImage = styled.img`
     justify-content: center;
     z-index: 2;
 `;
+
 
 const MainImage = styled.img<{$glowingColor: string}>`
     position: absolute;
@@ -87,10 +87,22 @@ const Skill = styled.span`
     }
 `;
 
+const shake = keyframes`
+    0% { transform:translate(0,0) }
+    1.78571% { transform:translate(5px,0) }
+    3.57143% { transform:translate(0,0) }
+    5.35714% { transform:translate(5px,0) }
+    7.14286% { transform:translate(0,0) }
+    8.92857% { transform:translate(5px,0) }
+    10.71429% { transform:translate(0,0) }
+    100% { transform:translate(0,0) }
+ `
+
 const ButtonContainer = styled.div`
     position: absolute;
     bottom: 2rem;
     right: 2rem;
+    animation: ${shake} 4s linear infinite;
 `;
 
 const ExpansionContainer = styled.div<{height: number}>`
@@ -115,12 +127,20 @@ const ExpansionContainer = styled.div<{height: number}>`
 
     max-width: 100%;
 `;
+const wave = keyframes`
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); } 
+    100% { transform: translateY(0); }
+`;
 
 const ExpandButton = styled(ImageButton)`
     width: 100%;
-    img {
-        z-index: 10;
-    }
+`;
+
+const ExpandButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    animation: ${wave} 1s ease-in-out infinite;
 `;
 
 const StyledImage = styled.img`
@@ -197,7 +217,9 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                 {category === 'simple' && <StyledImage src={demo} />}
                 {iframeSize && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
             </ExpansionContainer>}
-            {demo && (category === 'simple' || iframeSize) && <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded}/>}
+            {demo && (category === 'simple' || iframeSize) && <ExpandButtonContainer>
+                <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded} zIndex={100}/>
+            </ExpandButtonContainer>}
         </Layout>
     )
 };
