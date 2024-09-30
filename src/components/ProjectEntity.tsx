@@ -170,7 +170,7 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
             }
         };
         fetchSize();
-    }, [ expanded ]);
+    }, []);
 
     const layoutRef = useRef<HTMLDivElement>(null);
 
