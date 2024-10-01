@@ -7,6 +7,14 @@ import thumbnailFrame from '../images/thumbnail-frame.png';
 import linkIcon from '../images/link-icon.png';
 import expandIcon from '../images/more-icon.png';
 
+const OuterLayout = styled(VContainer)`
+    &: hover {
+        filter: brightness(1.05);
+        transform: scale(1.05);
+    }
+    transition: all 0.3s ease;
+`
+
 const Layout = styled(VContainer)`
     width: 90%;
     max-width: 70rem;
@@ -16,7 +24,6 @@ const Layout = styled(VContainer)`
     border-radius: 2rem;
     filter: drop-shadow(0 0 0.2rem purple);
     padding: 1rem;
-    
     @media (max-width: 60rem) {
         margin-bottom: 2rem;
     }
@@ -29,7 +36,6 @@ const MainContainer = styled(HContainer)`
     
     @media (max-width: 60rem) {
         flex-direction: column;
-        padding-bottom: 2rem;
     }
 `;
 
@@ -75,6 +81,7 @@ const Name = styled.span`
 const Skills = styled.div`
     font-size: 2rem;
     text-align: left;
+    padding-bottom: 4rem;
 `;
 
 const Skill = styled.span`
@@ -142,6 +149,7 @@ const ExpandButton = styled(ImageButton)`
 `;
 
 const ExpandButtonContainer = styled.div`
+    z-index: 100;
     display: flex;
     justify-content: space-around;
     animation: ${wave} 1s ease-in-out infinite;
@@ -199,32 +207,34 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
     const layoutRef = useRef<HTMLDivElement>(null);
 
     return (
-        <Layout ref={layoutRef}>
-            <MainContainer>
-                <ThumbnailContainer>
-                    <Pivot></Pivot>
-                    <FrameImage src={thumbnailFrame}></FrameImage>
-                    <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
-                </ThumbnailContainer>
-                <DescriptionContainer>
-                    <Name><b>{name}</b></Name>
-                    <div style={{marginRight: '1rem'}}>
-                        {description}
-                    </div>
-                    <Skills>
-                        Skills: {skills.map((skill, index) => <Skill key={index}>{skill}</Skill>)}
-                    </Skills>
-                    {link && <ButtonContainer><ImageButton image={linkIcon} onClick={openWindow(link)} offset={-23}/></ButtonContainer>}
-                </DescriptionContainer>
-            </MainContainer>
-            {demo && <ExpansionContainer ref={ref} height={expansionHeight}>
-                {category === 'simple' && <StyledImage src={demo} />}
-                {iframeSize && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
-            </ExpansionContainer>}
+        <OuterLayout>
+            <Layout ref={layoutRef}>
+                <MainContainer>
+                    <ThumbnailContainer>
+                        <Pivot></Pivot>
+                        <FrameImage src={thumbnailFrame}></FrameImage>
+                        <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
+                    </ThumbnailContainer>
+                    <DescriptionContainer>
+                        <Name><b>{name}</b></Name>
+                        <div style={{marginRight: '1rem'}}>
+                            {description}
+                        </div>
+                        <Skills>
+                            Skills: {skills.map((skill, index) => <Skill key={index}>{skill}</Skill>)}
+                        </Skills>
+                        {link && <ButtonContainer><ImageButton image={linkIcon} onClick={openWindow(link)} offset={-23}/></ButtonContainer>}
+                    </DescriptionContainer>
+                </MainContainer>
+                {demo && <ExpansionContainer ref={ref} height={expansionHeight}>
+                    {category === 'simple' && <StyledImage src={demo} />}
+                    {iframeSize && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
+                </ExpansionContainer>}
+            </Layout>
             {demo && (category === 'simple' || iframeSize) && <ExpandButtonContainer>
-                <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-30} flipped={expanded} zIndex={100}/>
+                <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-60} flipped={expanded} zIndex={100}/>
             </ExpandButtonContainer>}
-        </Layout>
+        </OuterLayout>
     )
 };
 

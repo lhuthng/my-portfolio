@@ -15,7 +15,7 @@ const StyledButton = styled.button`
     transform-origin: center;
     filter: drop-shadow(0 0 0.2rem purple);
     &: hover {
-        filter: brightness(1.05) filter: drop-shadow(0 0 0.2rem purple);
+        filter: brightness(1.05) drop-shadow(0 0 0.2rem purple);
         transform: scale(1.1);
     };
     transition: filter 0.3s ease, transform 0.1s ease;

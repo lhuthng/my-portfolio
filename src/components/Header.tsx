@@ -4,13 +4,13 @@ import { SectionProps } from '../types';
 
 const Nav = styled.nav`
     font-family: Omori2;
-    font-size: 3rem;
+    font-size: 2rem;
 `;
 
 const StyledHeader = styled.header`
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 900;
     background-color: rgba(230, 213, 255, 1);
     padding {
         bottom: 3rem;
@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
         <StyledHeader>
             <Nav>
                 {infos.filter(info => !info.ignore).map((info, index) => (
-                    <StyledA key={index} onClick={() => scrollTo(info.ref)} alt={info.name}>{info.name}</StyledA>
+                    <StyledA key={index} onClick={() => scrollTo(info.ref)} alt={info.name}><b>{info.name}</b></StyledA>
                 ))}
             </Nav>
         </StyledHeader>
