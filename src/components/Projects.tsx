@@ -40,16 +40,16 @@ const projects: ProjectEntityProps[] = [
     assign(
         'This portfolio', portfolioThumbnail, 
         (<>
-            <span>A portfolio of mine showing things I'm interested. This website is also running on a <a href='https://github.com/lhuthng/app-server' >NodeJS</ a> server which hosts and handles connections.</span>
+            <span>A portfolio of mine showing works I have done. This one is also running on a <a href='https://github.com/lhuthng/app-server' >NodeJS/Express</ a> server which hosts and handles connections.</span>
             <span>All images are hand-drawn using <b>Clip Studio Paint</b>. The intire page is strongly inspired by <a href='https://www.omori-game.com/'>Omori</a>'s artstyle.</span>
         </>), 
-        ['React (Typescript)', 'NodeJS', 'Web Socket', 'UI Design', 'Clip Studio Paint'], 
+        ['React (Typescript)', 'NodeJS', 'Web Socket', 'UI Design', 'CSP'], 
         'program', 'yellow',
         'www.github.com/lhuthng/my-portfolio'
     ),
     assign(
         'L-Game', LGameThumbnail, 
-        (<span>The L Game is a compact project designed to showcase a variety of game development skills.</span>), 
+        (<span>The L Game is a compact project designed to showcase a variety of game development skills. (A demo may be available below)</span>), 
         ['Pixel Art', '2D Animation', '2D Transition', 'Music Composing', 'Game Programming', 'AI Programming', 'Network Programming'], 
         'program', 'pink',
         'www.github.com/lhuthng/L-Game', 
@@ -57,7 +57,7 @@ const projects: ProjectEntityProps[] = [
     ),
     assign(
         'Recorder-Visualization', RVThumbnail,
-        (<span>The recorder visualization is an application guiding recorder fingerings visually, just like <a href="https://synthesiagame.com/">Synthesia</a> but for recorder.</span>),
+        (<span>The recorder visualization is an application guiding recorder fingerings visually, just like <a href="https://synthesiagame.com/">Synthesia</a> but for recorder. (A demo may be available below)</span>),
         ['Pixel Art', '2D Animation', 'Visualization', 'Audio Handling', 'Music Theory'], 
         'program', 'teal',
         'www.github.com/lhuthng/RecorderVisualization',
@@ -65,7 +65,7 @@ const projects: ProjectEntityProps[] = [
     ),
     assign(
         'Square-1-Helper (Bachelor Thesis)', SQ1Thumbnail,
-        (<span>The helper is a tool for beginners to solve the shape-shiffting cute puzzle <a href='https://en.wikipedia.org/wiki/Square-1_(puzzle)'>Square-1</a> from any state to the solved state (with a long combination of a few easy moves).</span>),
+        (<span>The helper is a tool for beginners to solve the shape-shiffting cute puzzle <a href='https://en.wikipedia.org/wiki/Square-1_(puzzle)'>Square-1</a> from any state to the solved state (with a long combination of a few easy moves). The source code is not available anymore but my thesis is.</span>),
         ['Unity', 'Blender', '3D Mathematics', 'Simulation'], 
         'program', 'orange',
         'epub.vgu.edu.vn/handle/dlibvgu/1267'
@@ -87,14 +87,14 @@ const projects: ProjectEntityProps[] = [
     ),
     assign(
         'Genetic-Image-Reconstruction', geneticThumbnail,
-        (<span>The application that uses many techniques to reconstruct a given image with several polygons.</ span>),
+        (<span>An application that uses many techniques to reconstruct a given image with only polygons.</ span>),
         ['UI Programming', 'Genetic Programming', 'Java', 'Image Processing'],
         'program', 'purple',
         'github.com/lhuthng/genetic-image-reconstruction'
     ),
     assign(
         'Orbt-Trainer', orbtNNThumbnail,
-        (<span>This project is inspired with using genetic programming on a neural network to play a game called <a href='https://store.steampowered.com/app/615610/Orbt_XL/'>OrbtXL</a>. The goal is to maximize scores gaining from surviving a round or nearly touching an asteroid.</ span>),
+        (<span>A project which is inspired with using genetic programming on a neural network to play a game called <a href='https://store.steampowered.com/app/615610/Orbt_XL/'>OrbtXL</a>. The goal is to maximize scores gaining from surviving a round or nearly touching an asteroid.</ span>),
         ['Genetic Programming', 'Neural Network', 'C# Programming'],
         'program', 'orange',
         'github.com/thnglhu/OrbtNN'

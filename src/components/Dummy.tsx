@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dummy: React.FC = () => {
     return <div style={{
-        margin:'4rem'
+        padding:'1rem'
     }}></div>
 };
 

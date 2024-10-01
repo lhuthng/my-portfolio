@@ -5,8 +5,8 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 3rem;
-  padding: 3rem;
+  margin-top: 1rem;
+  padding: 1rem;
   padding-bottom: 0;
   position: relative;
   font-family: Omori2;
@@ -14,13 +14,16 @@ const StyledFooter = styled.footer`
   color: white;
   text-align: center;
   div {
-  height: 100%;
+    height: 100%;
     background-color: black;
     border-radius: 6rem;
-    padding: 3rem;
+    padding: 1rem;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    filter: drop-shadow(0 0 1rem white);
+    filter: drop-shadow(0 0 5rem white);
+  }
+  span {
+    filter: drop-shadow(0 0 0.5rem white);
   }
 `;
 
