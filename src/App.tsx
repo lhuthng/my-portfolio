@@ -26,7 +26,7 @@ const SectionContainer = styled(VContainer)`
 `
 
 const Section = styled.section`
-  max-width: 90%;
+  width: 90%;
   text-align: center;
 
 `;

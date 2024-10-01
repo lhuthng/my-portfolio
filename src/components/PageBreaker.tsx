@@ -29,7 +29,7 @@ const PageBreaker: React.FC = () => {
             style={{
                 width: '100%',
                 filter: 'drop-shadow(0 0 0.2rem purple)',
-                marginTop: '4rem',
+                marginTop: '2rem',
             }
         }>
             <img src={src} alt='Breaker' />

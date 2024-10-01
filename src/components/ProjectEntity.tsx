@@ -29,11 +29,15 @@ const MainContainer = styled(HContainer)`
     
     @media (max-width: 60rem) {
         flex-direction: column;
+        padding-bottom: 2rem;
     }
 `;
 
 const DescriptionContainer = styled(VContainer)`
     align-items: baseline;
+    span {
+        font-size: 1.7rem;
+    }
 `;
 
 const ThumbnailContainer = styled.div`
@@ -65,7 +69,7 @@ const MainImage = styled.img<{$glowingColor: string}>`
 `;
 
 const Name = styled.span`
-    font-size: 2rem;
+    font-size: 1.8rem;
 `;
 
 const Skills = styled.div`

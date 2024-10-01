@@ -14,7 +14,7 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
     border-top-left-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
     border-top-right-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
     align-items: ${({ $isLeft }) => $isLeft ? 'flex-end' : 'flex-start'};
-    background-color: rgba(230, 213, 255, 0.9);
+    background-color: rgba(255, 249, 207, 0.9);
     filter: drop-shadow(0 0 0.1rem purple);
     p {
         margin: 0;
@@ -25,7 +25,7 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
 const SkillCategory: React.FC<SkillCategoryProps> = ({name, skills, isLeft}) => {
     return (
         <Container $isLeft={isLeft}>
-            <p style={{fontFamily: 'Omori1', filter: 'drop-shadow(0 0 0.4rem purple)'}}>{name}</p>
+            <p style={{fontFamily: 'Omori1', filter: 'drop-shadow(0 0 0.4rem purple)'}}><b>{name}</b></p>
             {skills.map((skill, index) => <SkillEntity key={index} name={skill[0]} icon={skill[1]} isLeft={isLeft}></SkillEntity>)}
         </Container>
     );

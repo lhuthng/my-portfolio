@@ -131,7 +131,6 @@ const ArtGallery: React.FC = () => {
             if (ref.current) {
                 const width = ref.current.clientWidth;
                 setToggle(width < convertRemToPixels(32));
-                console.log(width + " " + convertRemToPixels(34));
             }
         }
     

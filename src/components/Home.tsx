@@ -11,16 +11,16 @@ import linkedinIcon from '../images/linkedin-icon.png';
 import artstationIcon from '../images/artstation-icon.png';
 
 const GapHContainer = styled(HContainer)`
-    padding: 1rem;
-    gap: 2rem;
+    padding: 0.5rem;
+    gap: 1rem;
     background-color: rgba(230, 213, 255, 0.9);
     border: 0.2rem dashed purple;
-    border-radius: 2rem;
+    border-radius: 1rem;
     filter: drop-shadow(0 0 0.2rem purple);
-    max-width: 60rem;
-    @media (max-width: 60rem) {
+    max-width: 45rem;
+
+    @media (max-width: 45rem) {
         flex-direction: column;
-        margin-left
     }
 `;
 
@@ -46,7 +46,7 @@ const Avatar = styled.img`
 
 const GreetingText = styled.div`
     flex: 1;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-family: Omori2;
     text-align: left;
     margin: 1rem;
@@ -58,23 +58,24 @@ const MapWavingTexts = (text: string, mult: number, offset: number) => text.spli
 
 const Home: React.FC = () => {
     return (
-        <GapHContainer>
-            <GapVContainer>
-                <Avatar src={avatar} alt="Avatar"></Avatar>
-                <ButtonContainer>
-                    <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
-                    <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
-                    <ImageButton offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
-                </ButtonContainer>
-            </GapVContainer>
-            <GreetingText>
-                Hi, I'm <b>Thang</b> <br />
-                {MapWavingTexts("an-enthusiastic-developer", 50, 0)} and <br />
-                {MapWavingTexts("a-digital-artist", 50, 0)}. <br />
-                I'm passionate about applying my knowledge to develop innovative solutions that optimize processes and drive efficiency.
-            </GreetingText>
-
-        </GapHContainer>
+        <VContainer>
+            <GapHContainer>
+                <GapVContainer>
+                    <Avatar src={avatar} alt="Avatar"></Avatar>
+                    <ButtonContainer>
+                        <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
+                        <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
+                        <ImageButton offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
+                    </ButtonContainer>
+                </GapVContainer>
+                <GreetingText>
+                    Hi, I'm <b>Thang</b> <br />
+                    {MapWavingTexts("an-enthusiastic-developer", 50, 0)} and <br />
+                    {MapWavingTexts("a-digital-artist", 50, 0)}. <br />
+                    I'm passionate about applying my knowledge to develop innovative solutions that optimize processes and drive efficiency.
+                </GreetingText>
+            </GapHContainer>
+        </VContainer>
     );
 };
 

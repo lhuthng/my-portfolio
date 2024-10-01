@@ -38,8 +38,9 @@ const MainContainer = styled(HContainer)`
     justify-content: center;
     gap: 1rem;
     @media (max-width: 45rem) {
+        width: 100%;
         flex-direction: column;
-        align-items: center;
+        align-items: normal;
     }
 `;
 
@@ -79,7 +80,7 @@ const CommonContainer = styled(SkillsContainer)`
     margin-top: 2rem;
     padding: 1rem;
     border-radius: 15px;
-    background-color:  rgba(230, 213, 255, 0.6);
+    background-color:  rgba(255, 249, 207, 0.8);
 `;
 
 const TextOnlySkills = styled.span`

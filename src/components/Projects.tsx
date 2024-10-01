@@ -16,6 +16,7 @@ import orbtNNThumbnail from '../images/orbt-nn-thumbnail.png';
 const StyledLayout = styled(Layout)`
     font-size: 1.8rem;
     gap: 2rem;
+    width: 100%;
 `;
 
 const ProjectLayout = styled(VContainer)`

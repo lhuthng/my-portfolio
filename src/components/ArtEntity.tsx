@@ -55,6 +55,7 @@ const Overlay = styled.div`
 
 const Description = styled.span`
     color: white;
+    font-size: 1.7rem;
 `;
 
 interface ArtEntityProps {
