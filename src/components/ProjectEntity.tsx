@@ -7,12 +7,25 @@ import thumbnailFrame from '../images/thumbnail-frame.png';
 import linkIcon from '../images/link-icon.png';
 import expandIcon from '../images/more-icon.png';
 
+const FadeIn = keyframes`
+    from { 
+        scale: 0.9;
+        opacity: 0;
+    }
+    to { 
+        scale: 1;
+        opacity: 1;
+    }
+`;
+
 const OuterLayout = styled(VContainer)`
     &: hover {
         filter: brightness(1.05);
         transform: scale(1.05);
     }
     transition: all 0.3s ease;
+    animation: ${FadeIn} linear;
+    animation-timeline: view(80% 0%);
 `
 
 const Layout = styled(VContainer)`
@@ -65,7 +78,6 @@ const FrameImage = styled.img`
     justify-content: center;
     z-index: 2;
 `;
-
 
 const MainImage = styled.img<{$glowingColor: string}>`
     position: absolute;

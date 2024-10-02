@@ -80,7 +80,8 @@ const CommonContainer = styled(SkillsContainer)`
     margin-top: 2rem;
     padding: 1rem;
     border-radius: 15px;
-    background-color:  rgba(255, 249, 207, 0.8);
+    background-color:  rgba(255, 249, 207, 0.7);
+    filter: drop-shadow(0 0 0.5rem purple);
 `;
 
 const TextOnlySkills = styled.span`

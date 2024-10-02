@@ -7,16 +7,17 @@ const Entity = styled(HContainer)`
     p {
         color: black;
         text-decoration: none;
-        filter: drop-shadow(0 0 0.1rem yellow);
+        filter: drop-shadow(0 0 0.1rem white);
     }
     img: hover {
         filter: brightness(1.05);
-        filter: drop-shadow(0 0 0.2rem white);
+        filter: drop-shadow(0 0 0.2rem purple);
         transform: scale(1.1);
         transition: filter scale 0.3s ease;
     }
     img {
         filter: drop-shadow(0 0 0.2rem purple);
+        transition: all 0.1s ease;
     }
 `;
 
