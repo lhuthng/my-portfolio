@@ -19,6 +19,7 @@ const FadeIn = keyframes`
 `;
 
 const OuterLayout = styled(VContainer)`
+    width: 100%;
     &: hover {
         filter: brightness(1.05);
         transform: scale(1.05);
