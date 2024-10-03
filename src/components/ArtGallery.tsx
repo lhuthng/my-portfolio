@@ -27,7 +27,7 @@ const arts: { src: string, desc?: string , isVideo?: boolean }[] = [
     {src: FJ1, desc: "A short art of my fantasy journal with my friends."}, 
     {src: FJ2, desc: "Part 2!! Planning and Attacking!!"}, 
     {src: LG, desc: "A short demo of my L-Game, you should check above!"}, 
-    {src: P3D, desc: "A short video of my PIXEL 3D project on Blender"},
+    {src: "vM3MxjjENVA", isVideo: true},
     {src: C, desc: "Cool art of myself while playing the Control game"}, 
     {src: RC, desc: "A short (not that short I spent half an hour to generate) of my Image Reconstruction project"},
     {src: BM, desc: "A spritesheet I made to use on my bomber man project on Phaser."}, 
