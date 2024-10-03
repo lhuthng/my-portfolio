@@ -82,11 +82,23 @@ const CommonContainer = styled(SkillsContainer)`
     border-radius: 15px;
     background-color:  rgba(255, 249, 207, 0.7);
     filter: drop-shadow(0 0 0.5rem purple);
+    p {
+        transform: translateY(-12px);
+    }
+    &: before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        top: 0;
+        height: 2.8rem;
+        border-top-radius: '15px';
+        background: linear-gradient(to bottom, rgba(255, 0, 255, 0), rgba(127, 17, 224, 0.5));
+    }
 `;
 
 const TextOnlySkills = styled.span`
     color: #33069A;
-    text-shadow: 1px 1px 6px yellow;
+    text-shadow: 1px 1px 6px white;
 `;
 
 const Skills: React.FC = () => {

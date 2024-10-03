@@ -65,12 +65,14 @@ const ThumbnailContainer = styled.div`
     justify-content: center;
     margin: 0;
     padding: 0;
+    transform: scale(0.8);
+    transform-origin: top;
 `;
 
 const Pivot = styled.div`
     position: relative;
-    width: 269px;
-    height: 269px;
+    width: 215px;
+    height: 215px;
 `;
 
 const FrameImage = styled.img`
@@ -93,7 +95,7 @@ const Name = styled.span`
 const Skills = styled.div`
     font-size: 2rem;
     text-align: left;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 `;
 
 const Skill = styled.span`

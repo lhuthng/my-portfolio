@@ -28,6 +28,8 @@ const GapHContainer = styled(HContainer)`
 const GapVContainer = styled(VContainer)`
     padding: 1rem;
     gap: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
 `;
 
 const ButtonContainer = styled(HContainer)`
