@@ -13,16 +13,19 @@ import StarBackground from './components/StarBackground';
 
 //  background-color: #6B0BFD;
 const PageContainer = styled.div`
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
   background: linear-gradient(to bottom, #6B0BFD, black);
+  z-index: -999;
 `;
 
 const SectionContainer = styled(VContainer)`
   width: 90%;
   max-width: 80rem;
   background: linear-gradient(to bottom, rgba(230, 213, 255, 0.4), rgba(230, 213, 255, 0.8));
+  z-index: -777;
 `
 
 const Section = styled.section`

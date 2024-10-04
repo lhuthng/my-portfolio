@@ -220,7 +220,7 @@ const StarBackground: React.FC<Props> = (props: Props) => {
 				right: 0,
 				bottom: 0,
 				left: 0,
-				zIndex: 0,
+				zIndex: -888,
 				opacity: 1,
 				pointerEvents: 'none',
 				mixBlendMode: 'screen',
