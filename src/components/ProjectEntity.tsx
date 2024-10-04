@@ -21,7 +21,7 @@ const FadeIn = keyframes`
 const OuterLayout = styled(VContainer)`
     width: 95%;
     &: hover {
-        filter: brightness(1.05);
+        filter: brightness(1.02);
         transform: scale(1.05);
     }
     transition: all 0.3s ease;
@@ -34,13 +34,23 @@ const Layout = styled(VContainer)`
     max-width: 70rem;
     align-items: normal;
     background-color: rgba(230, 213, 255, 0.9);
-    border: 0.2rem solid purple;
-    box-sizing: border-box;
     border-radius: 2rem;
-    filter: drop-shadow(0 0 0.2rem purple);
     padding: 1rem;
     @media (max-width: 60rem) {
         margin-bottom: 2rem;
+    }
+        
+    &: after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+        border-radius: calc(2rem + 5px);
+        filter: blur(0.6rem);
+        z-index: -1;
+        background-image: conic-gradient(#ab00ff, #8300c4, #4c00a4, #33007b, #31004a, #31004a, #33007b, #4c00a4, #8300c4, #ab00ff);
     }
 `;
 

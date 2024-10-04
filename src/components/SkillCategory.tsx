@@ -12,7 +12,7 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
     border-top-left-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
     border-top-right-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
     align-items: ${({ $isLeft }) => $isLeft ? 'flex-end' : 'flex-start'};
-    background-color: rgba(255, 249, 207, 0.7);
+    background-color: rgba(255, 249, 207, 0.9);
     filter: drop-shadow(${({ $isLeft }) => $isLeft ? '0.5' : '-0.5'}rem 0.5rem 0.5rem purple);
     p {
         margin: 0;
