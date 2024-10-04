@@ -1,39 +1,47 @@
 import React, { useState, useRef, useEffect} from 'react';
 import { VContainer } from '../types';
-import pageBreaker from '../images/page-breaker.png';
-import smallPageBreaker from '../images/page-breaker-small.png';
+import wing from '../images/page-breaker-wing.png';
+import body from '../images/page-breaker-body.png';
+import core from '../images/page-breaker-core.png';
+import styled from 'styled-components';
 
+const Container = styled(VContainer)`
+    width: 100%;
+    height: 96px;
+    filter: drop-shadow(0 0 0.2rem purple);
+    margin-top: 2rem;
+`
+
+const StyledImage = styled.img<{offset: number}>`
+    top: ${({ offset }) => offset}px;
+    position: absolute;
+`;
 
 const PageBreaker: React.FC = () => {
-    const [src, setSrc] = useState(pageBreaker);
+    const [width, setWidth] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleResize = () => {
             if (ref.current) {
-                setSrc(ref.current.offsetWidth < 812 ? smallPageBreaker : pageBreaker);
+                setWidth(ref.current.offsetWidth);
             }
         }
+        handleResize();
         const resizeObserver = new ResizeObserver(handleResize);
         if (ref.current) resizeObserver.observe(ref.current);
         return () => {
             if (ref.current) resizeObserver.unobserve(ref.current);
+            resizeObserver.disconnect();
         }
-
-        return () => resizeObserver.disconnect();
     }, []);
 
     return (
-        <VContainer 
-            ref={ref}
-            style={{
-                width: '100%',
-                filter: 'drop-shadow(0 0 0.2rem purple)',
-                marginTop: '2rem',
-            }
-        }>
-            <img src={src} alt='Breaker' />
-        </VContainer>
+        <Container ref={ref}>
+            {width >= 816 && <StyledImage src={wing} offset={0}></StyledImage>}
+            {width >= 464 && <StyledImage src={body} offset={16}></StyledImage>}
+            <StyledImage src={core} offset={0}></StyledImage>
+        </Container>
     );
 };
 

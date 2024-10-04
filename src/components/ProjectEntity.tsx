@@ -19,7 +19,7 @@ const FadeIn = keyframes`
 `;
 
 const OuterLayout = styled(VContainer)`
-    width: 100%;
+    width: 95%;
     &: hover {
         filter: brightness(1.05);
         transform: scale(1.05);
@@ -35,6 +35,7 @@ const Layout = styled(VContainer)`
     align-items: normal;
     background-color: rgba(230, 213, 255, 0.9);
     border: 0.2rem solid purple;
+    box-sizing: border-box;
     border-radius: 2rem;
     filter: drop-shadow(0 0 0.2rem purple);
     padding: 1rem;

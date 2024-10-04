@@ -60,8 +60,6 @@ const App: React.FC = () => {
   return (
     <PageContainer>
       <StarBackground 
-        starCount={1000}
-        speedFactor={0.01}
         backgroundColor="black" />
       <SectionContainer>
         <Header infos={sectionReferences} scrollTo={scrollTo}></Header>

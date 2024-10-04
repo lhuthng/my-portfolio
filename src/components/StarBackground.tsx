@@ -14,10 +14,7 @@ import bo12 from '../images/bo-12.png';
 import bo13 from '../images/bo-13.png';
 
 interface Props {
-	speedFactor?: number;
 	backgroundColor?: string;
-	starCount?: number;
-    objectCount?: number;
 }
 
 const backgroundObjects = [ bo1, bo2, bo3, bo4, bo5, bo6, bo7, bo8, bo9, bo10, bo11, bo12, bo13].map(bo => {
@@ -143,9 +140,8 @@ class FloatingObject {
 	}
 }
 
-export default function StarBackground(props: Props) {
-	const { speedFactor = 0.05, backgroundColor = 'black', starCount = 2000, objectCount = 30 } = props;
-
+const StarBackground: React.FC<Props> = (props: Props) => {
+	const { backgroundColor = 'black' } = props;
 	useEffect(() => {
 		const canvas = document.getElementById('starfield') as HTMLCanvasElement;
 
@@ -156,12 +152,12 @@ export default function StarBackground(props: Props) {
 			if (c) {
                 c.filter = 'drop-shadow(0 0 0.3rem white)';
                 
-				let w = window.innerWidth;
-				let h = window.innerHeight;
+				let initialWidth = window.visualViewport?.width || window.innerWidth;
+				let initialHeight = window.visualViewport?.height || window.innerHeight;
 
 				const setCanvasExtents = () => {
-					canvas.width = w;
-					canvas.height = h;
+					canvas.width = initialWidth;
+					canvas.height = initialHeight;
 				};
 
 				setCanvasExtents();
@@ -170,8 +166,6 @@ export default function StarBackground(props: Props) {
 					setCanvasExtents();
 				};
 
-				const initialWidth = Math.max(window.innerWidth, 1920);
-				const initialHeight = Math.max(window.innerHeight, 1080)
 				let stars: Star[];
 				let floatingObjects: FloatingObject[];
 				const clear = () => {
@@ -181,8 +175,10 @@ export default function StarBackground(props: Props) {
 
 				const init = (time: number) => {
 					requestAnimationFrame(tick);
-					stars = Array.from({ length: starCount }, () => new Star(initialWidth, initialHeight));
-					floatingObjects = Array.from( { length: objectCount }, () => new FloatingObject(initialWidth, initialHeight, time));
+					const starCount = initialWidth * initialHeight * 1000 / (1920 * 1080);
+					const objectCount = initialWidth * initialHeight * 25 / (1920 * 1080);
+					stars = Array.from({ length: starCount >> 0 }, () => new Star(initialWidth, initialHeight));
+					floatingObjects = Array.from( { length: objectCount >> 0 }, () => new FloatingObject(initialWidth, initialHeight, time));
 				};
 
 				const tick = (time: number) => {
@@ -197,8 +193,8 @@ export default function StarBackground(props: Props) {
 
 				// add window resize listener:
 				window.addEventListener('resize', function () {
-					w = window.innerWidth;
-					h = window.innerHeight;
+					initialWidth = window.visualViewport?.width || window.innerWidth;
+					initialHeight = window.visualViewport?.height || window.innerHeight;
 					setCanvasExtents();
 				});
 			} else {
@@ -211,7 +207,7 @@ export default function StarBackground(props: Props) {
 		return () => {
 			window.onresize = null;
 		};
-	}, [backgroundColor, speedFactor, starCount, objectCount]);
+	}, [backgroundColor]);
 
 	return (
 		<canvas
@@ -232,3 +228,5 @@ export default function StarBackground(props: Props) {
 		></canvas>
 	);
 }
+
+export default StarBackground;
