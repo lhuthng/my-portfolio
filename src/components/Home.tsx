@@ -64,7 +64,7 @@ const Avatar = styled.img`
 
 const GreetingText = styled.div`
     flex: 1;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-family: Omori2;
     text-align: left;
     margin: 1rem;

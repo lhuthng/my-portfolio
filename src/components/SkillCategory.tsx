@@ -6,7 +6,6 @@ import { squiggle, squiggleDuration, squiggleRandomDelay } from '../common';
 
 const Container = styled(VContainer)<{$isLeft: boolean}>`
     padding: 1rem;
-    border: 3px solid black;
     border: none;
     border-bottom-left-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
     border-bottom-right-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
@@ -30,6 +29,15 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
         border-top-left-radius: ${({ $isLeft }) => $isLeft ? '15px' : '0px'};
         border-top-right-radius: ${({ $isLeft }) => $isLeft ? '0px' : '15px'};
         background: linear-gradient(to bottom, rgba(255, 0, 255, 0), rgba(127, 17, 224, 0.5));
+    }
+    &: after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 0, 0, 0.4);
+        top: 2.8rem;
+        ${({ $isLeft }) => $isLeft ? 'right' : 'left'}: 0.5rem;
+        width: 3px;
+        height: calc(100% - 2.8rem);
     }
 `;
 

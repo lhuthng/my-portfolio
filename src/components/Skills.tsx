@@ -100,6 +100,31 @@ const CommonContainer = styled(SkillsContainer)`
     }
 `;
 
+const SkillContainer = styled.div`
+    position: relative;
+    width: 100%;
+    &: before {
+        content: '';
+        position: absolute;
+        width: calc(100% + 2rem);
+        left: -1rem;
+        top: 5px;
+        background: linear-gradient(to left, rgba(255, 0, 0, 0.2) 10%, rgba(255, 0, 0, 0.4) 25%, rgba(255, 0, 0, 0.2) 90%);
+        height: 2px;
+        z-index: 1;
+    }
+    &: after {
+        content: '';
+        position: absolute;
+        width: calc(100% + 2rem);
+        left: -1rem;
+        bottom: 5px;
+        background: linear-gradient(to left, rgba(255, 0, 0, 0.2) 10%, rgba(255, 0, 0, 0.4) 25%, rgba(255, 0, 0, 0.2) 90%);
+        height: 2px;
+        z-index: 1;
+    }
+`;
+
 const TextOnlySkills = styled.span`
     color: #33069A;
     text-shadow: 1px 1px 6px white;
@@ -205,7 +230,9 @@ const Skills: React.FC = () => {
             </MainContainer>
             <CommonContainer>
                 <p><b>~Both~</b></p>
-                {commonSkills.map((skill, index) => <TextOnlySkills key={index}><b>{skill}</b></TextOnlySkills>)}
+                {commonSkills.map((skill, index) => <SkillContainer key={index}>
+                    <TextOnlySkills><b>{skill}</b></TextOnlySkills>
+                </SkillContainer>)}                
             </CommonContainer>
         </Layout>
     );

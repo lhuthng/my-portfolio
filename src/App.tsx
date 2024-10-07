@@ -39,6 +39,11 @@ const Section = styled.section`
 
 `;
 
+const SVG = styled.svg`
+  position: absolute;
+  pointer-events: none;
+`
+
 const CreateSectioRef = (name: string, component: React.FC) => {
   return {
     ref: useRef<HTMLDivElement>(null),
@@ -67,11 +72,11 @@ const App: React.FC = () => {
   }
   return (
     <PageContainer>
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <SVG xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
           {Array.from( {length: squiggleCount }, (_, index) => <TurbelenceFilter key={index} id={index} />)}
         </defs> 
-      </svg>
+      </SVG>
       <StarBackground 
         backgroundColor="black" />
       <SectionContainer>
