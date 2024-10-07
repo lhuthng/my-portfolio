@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { squiggle } from '../common';
 import { ImageButtonProps } from '../types';
 
 const StyledButton = styled.button`
@@ -13,9 +13,9 @@ const StyledButton = styled.button`
     margin: 0;
     padding: 0;
     transform-origin: center;
-    filter: drop-shadow(0 0 0.2rem purple);
+    filter: drop-shadow(0 0 0.3rem purple);
     &: hover {
-        filter: brightness(1.05) drop-shadow(0 0 0.2rem purple);
+        filter: brightness(1.05) drop-shadow(0 0 0.3rem purple);
         transform: scale(1.1);
     };
     transition: filter 0.3s ease, transform 0.1s ease;
@@ -26,6 +26,7 @@ const FrameImage = styled.img<{offset: number, zIndex: number}>`
     top: ${({offset}) => offset}px;
     justify-content: center;
     z-index: ${({ zIndex }) => zIndex + 1};
+    animation: ${squiggle} 0.5s linear infinite;
 `;
 
 const MainImage = styled.img<{offset: number, zIndex: number, $flipped?: boolean}>`

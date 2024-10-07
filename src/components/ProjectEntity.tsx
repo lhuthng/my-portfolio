@@ -6,6 +6,7 @@ import ImageButton from './ImageButton';
 import thumbnailFrame from '../images/thumbnail-frame.png';
 import linkIcon from '../images/link-icon.png';
 import expandIcon from '../images/more-icon.png';
+import { squiggle } from '../common';
 
 const FadeIn = keyframes`
     from { 
@@ -91,6 +92,7 @@ const FrameImage = styled.img`
     position: absolute;
     justify-content: center;
     z-index: 2;
+    animation: ${squiggle} 0.5s linear infinite;
 `;
 
 const MainImage = styled.img<{$glowingColor: string}>`
@@ -139,7 +141,7 @@ const ButtonContainer = styled.div`
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    animation: ${shake} 4s linear infinite;
+    animation: ${shake} 4s linear infinite, ${squiggle} 0.5s linear infinite;
 `;
 
 const ExpansionContainer = styled.div<{height: number}>`

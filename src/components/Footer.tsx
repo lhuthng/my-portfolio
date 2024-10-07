@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { squiggle } from '../common';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -24,6 +25,9 @@ const StyledFooter = styled.footer`
   }
   span {
     filter: drop-shadow(0 0 0.5rem white);
+  }
+  b {
+    animation: ${squiggle} 0.5s linear infinite;
   }
 `;
 

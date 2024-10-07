@@ -4,6 +4,7 @@ import wing from '../images/page-breaker-wing.png';
 import body from '../images/page-breaker-body.png';
 import core from '../images/page-breaker-core.png';
 import styled from 'styled-components';
+import { squiggle } from '../common';
 
 const Container = styled(VContainer)`
     width: 100%;
@@ -15,6 +16,8 @@ const Container = styled(VContainer)`
 const StyledImage = styled.img<{offset: number}>`
     top: ${({ offset }) => offset}px;
     position: absolute;
+    animation: ${squiggle} 0.5s linear infinite;
+    animation-delay: 0.5s;
 `;
 
 const PageBreaker: React.FC = () => {

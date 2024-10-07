@@ -9,12 +9,12 @@ import frame from '../images/frame.png';
 import githubIcon from '../images/github-icon.png';
 import linkedinIcon from '../images/linkedin-icon.png';
 import artstationIcon from '../images/artstation-icon.png';
+import { squiggle } from '../common';
 
 const GapHContainer = styled(HContainer)`
     padding: 0.5rem;
     gap: 1rem;
     background-color: rgba(230, 213, 255, 0.9);
-    border: 0.2rem dashed purple;
     border-radius: 1rem;
     filter: drop-shadow(0 0 0.2rem purple);
     max-width: 45rem;
@@ -22,7 +22,18 @@ const GapHContainer = styled(HContainer)`
     @media (max-width: 45rem) {
         flex-direction: column;
     }
-        
+    &: after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border: 0.2rem dashed purple;
+        border-radius: 1rem;
+        animation: ${squiggle} 0.5s linear infinite;
+    }
 `;
 
 const GapVContainer = styled(VContainer)`
@@ -43,8 +54,11 @@ const glow = keyframes`
     100% { filter: drop-shadow(0 0 0.2rem purple); }
 `;
 
-const Avatar = styled.img`
+const AvatarContainer = styled.div`
     animation: ${glow} 3s ease-in-out infinite;
+`;
+const Avatar = styled.img`
+    animation: ${squiggle} 0.5s linear infinite;
 `;
 
 const GreetingText = styled.div`
@@ -68,7 +82,9 @@ const Home: React.FC = () => {
         <VContainer>
             <GapHContainer>
                 <GapVContainer>
-                    <Avatar src={avatar} alt="Avatar"></Avatar>
+                    <AvatarContainer>
+                        <Avatar src={avatar} alt="Avatar"></Avatar>
+                    </AvatarContainer>
                     <ButtonContainer>
                         <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
                         <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>

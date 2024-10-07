@@ -150,7 +150,6 @@ const StarBackground: React.FC<Props> = (props: Props) => {
             
 
 			if (c) {
-                c.filter = 'drop-shadow(0 0 0.3rem white)';
                 
 				let initialWidth = window.visualViewport?.width || window.innerWidth;
 				let initialHeight = window.visualViewport?.height || window.innerHeight;
