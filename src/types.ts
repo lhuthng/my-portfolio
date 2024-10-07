@@ -14,6 +14,7 @@ export interface ImageButtonProps {
     image: string;
     offset: number;
     flipped?: boolean;
+    random?: boolean;
     onClick: () => void;
 };
 

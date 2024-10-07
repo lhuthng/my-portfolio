@@ -27,7 +27,9 @@ const OuterLayout = styled(VContainer)`
     }
     transition: all 0.3s ease;
     animation: ${FadeIn} linear;
-    animation-timeline: view(80% 0%);
+    animation-timeline: view();
+    animation-range-start: 0;
+    animation-range-end: 33%;
 `
 
 const Layout = styled(VContainer)`
@@ -78,7 +80,6 @@ const ThumbnailContainer = styled.div`
     justify-content: center;
     margin: 0;
     padding: 0;
-    transform: scale(0.8);
     transform-origin: top;
 `;
 
@@ -88,19 +89,32 @@ const Pivot = styled.div`
     height: 215px;
 `;
 
+const ImageContainer = styled.div`
+    position: absolute;
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+`
+
 const FrameImage = styled.img`
     position: absolute;
-    justify-content: center;
+    top: 0;
+    left: 0;
     z-index: 2;
-    animation: ${squiggle} ${squiggleDuration} linear infinite;
+    width: 100%;
+    height: 100%;
 `;
 
 const MainImage = styled.img<{$glowingColor: string}>`
     position: absolute;
-    justify-content: center;
     z-index: 1;
+    top: 0;
+    left: 0;
     filter: drop-shadow(0 0.6rem 0.6rem ${({$glowingColor}) => $glowingColor});
-    animation: ${squiggle} ${squiggleDuration} linear infinite;
+    width: 100%;
+    height: 100%;
 `;
 
 const Name = styled.span`
@@ -241,9 +255,11 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
             <Layout ref={layoutRef}>
                 <MainContainer>
                     <ThumbnailContainer>
-                        <Pivot></Pivot>
-                        <FrameImage src={thumbnailFrame}></FrameImage>
-                        <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
+                        <Pivot />
+                        <ImageContainer>
+                            <FrameImage src={thumbnailFrame}></FrameImage>
+                            <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
+                        </ImageContainer>
                     </ThumbnailContainer>
                     <DescriptionContainer>
                         <Name><b>{name}</b></Name>

@@ -33,6 +33,7 @@ const GapHContainer = styled(HContainer)`
         border: 0.2rem dashed purple;
         border-radius: 1rem;
         animation: ${squiggle} ${squiggleDuration} linear infinite;
+        pointer-events: none; 
     }
 `;
 
@@ -86,9 +87,9 @@ const Home: React.FC = () => {
                         <Avatar src={avatar} alt="Avatar"></Avatar>
                     </AvatarContainer>
                     <ButtonContainer>
-                        <ImageButton offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
-                        <ImageButton offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
-                        <ImageButton offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
+                        <ImageButton random={true} offset={-35} frameImage={frame} image={githubIcon} onClick={openWindow("www.github.com/lhuthng/")}></ImageButton>
+                        <ImageButton random={true} offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
+                        <ImageButton random={true} offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
                     </ButtonContainer>
                 </GapVContainer>
                 <GreetingText>

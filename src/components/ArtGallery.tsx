@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { VContainer } from '../types';
-import { convertRemToPixels } from '../common';
+import { convertRemToPixels, squiggle, squiggleDuration } from '../common';
 import DST from '../images/DST.jpg';
 import GXT from '../images/TXG.png';
 import T from '../images/T.jpg';
@@ -80,10 +80,22 @@ const GalleryContainer = styled.div`
         object-fit: cover;
     }
     padding: 2rem;
-    border: 3px solid purple    ;
     border-radius: 2rem;
     background-color: rgba(230, 213, 255, 0.9);
     filter: drop-shadow(0 0 0.2rem purple);
+    &: after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border: 0.2rem dashed purple;
+        border-radius: 2rem;
+        pointer-events: none; 
+        animation: ${squiggle} ${squiggleDuration} linear infinite;
+    }
 `;
 
 const Lightbox = styled.div<{ $isOpen: boolean }>`

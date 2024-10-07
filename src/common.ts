@@ -9,9 +9,9 @@ export const convertRemToPixels = (rem: number) => {
 }
 
 export const squiggleCount = 15;
-const waitTime = 0.1;
+const waitTime = 0.2;
 export const squiggleDuration = (waitTime * squiggleCount) + "s";
-export const squiggleRandomDelay = () => Math.floor(Math.random() * squiggleCount * 2) * waitTime + "s";
+export const squiggleRandomDelay = () => Math.random() * squiggleCount * 2 * waitTime + "s";
 
 export const squiggle = keyframes`
     ${Array.from({ length: squiggleCount + 1 }, (_, index) => {
