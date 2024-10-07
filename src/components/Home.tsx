@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import ImageButton from './ImageButton';
 import WavingLetter from './WavingLetter';
 import { HContainer, VContainer } from '../types';
-import { openWindow } from '../common';
+import { openWindow, squiggleDuration } from '../common';
 import avatar from '../images/avatar.png';
 import frame from '../images/frame.png';
 import githubIcon from '../images/github-icon.png';
@@ -32,7 +32,7 @@ const GapHContainer = styled(HContainer)`
         height: 100%;
         border: 0.2rem dashed purple;
         border-radius: 1rem;
-        animation: ${squiggle} 0.5s linear infinite;
+        animation: ${squiggle} ${squiggleDuration} linear infinite;
     }
 `;
 
@@ -58,7 +58,7 @@ const AvatarContainer = styled.div`
     animation: ${glow} 3s ease-in-out infinite;
 `;
 const Avatar = styled.img`
-    animation: ${squiggle} 0.5s linear infinite;
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
 const GreetingText = styled.div`

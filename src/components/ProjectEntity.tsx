@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { HContainer, ProjectEntityProps, VContainer } from '../types';
-import { openWindow } from '../common';
+import { openWindow, squiggleDuration } from '../common';
 import ImageButton from './ImageButton';
 import thumbnailFrame from '../images/thumbnail-frame.png';
 import linkIcon from '../images/link-icon.png';
@@ -92,7 +92,7 @@ const FrameImage = styled.img`
     position: absolute;
     justify-content: center;
     z-index: 2;
-    animation: ${squiggle} 0.5s linear infinite;
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
 const MainImage = styled.img<{$glowingColor: string}>`
@@ -100,10 +100,12 @@ const MainImage = styled.img<{$glowingColor: string}>`
     justify-content: center;
     z-index: 1;
     filter: drop-shadow(0 0.6rem 0.6rem ${({$glowingColor}) => $glowingColor});
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
 const Name = styled.span`
     font-size: 1.8rem;
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
 const Skills = styled.div`
@@ -141,7 +143,7 @@ const ButtonContainer = styled.div`
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    animation: ${shake} 4s linear infinite, ${squiggle} 0.5s linear infinite;
+    animation: ${shake} 4s linear infinite, ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
 const ExpansionContainer = styled.div<{height: number}>`

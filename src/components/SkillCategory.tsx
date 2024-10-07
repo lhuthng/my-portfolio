@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SkillEntity from './SkillEntity';
 import { SkillCategoryProps, VContainer } from '../types';
+import { squiggle, squiggleDuration, squiggleRandomDelay } from '../common';
 
 const Container = styled(VContainer)<{$isLeft: boolean}>`
     padding: 1rem;
@@ -32,18 +33,25 @@ const Container = styled(VContainer)<{$isLeft: boolean}>`
     }
 `;
 
+const TitleContainer = styled.div<{ $delay: string }>`
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
+    animation-delay: ${( {$delay} ) => $delay};
+`;
+
 const Title = styled.p`
     font-family: Omori2;
     filter: drop-shadow(0 0 3rem black);
     font-size: 2rem;
-    transform: translateY(-12px);
     color: black;
+    transform: translateY(-12px);
 `;
 
 const SkillCategory: React.FC<SkillCategoryProps> = ({name, skills, isLeft}) => {
     return (
         <Container $isLeft={isLeft}>
-            <Title><b>{name}</b></Title>
+            <TitleContainer $delay={squiggleRandomDelay()}>
+                <Title><b>{name}</b></Title>
+            </TitleContainer>            
             {skills.map((skill, index) => <SkillEntity key={index} name={skill[0]} icon={skill[1]} isLeft={isLeft}></SkillEntity>)}
         </Container>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { squiggle } from '../common';
+import { squiggle, squiggleDuration } from '../common';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -27,7 +27,7 @@ const StyledFooter = styled.footer`
     filter: drop-shadow(0 0 0.5rem white);
   }
   b {
-    animation: ${squiggle} 0.5s linear infinite;
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
   }
 `;
 

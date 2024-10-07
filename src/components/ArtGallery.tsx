@@ -152,6 +152,7 @@ const ArtGallery: React.FC = () => {
                 {
                     arts.map((art, index) => (
                         <ArtEntity 
+                            key={index}
                             src={art.src}
                             size={toggle ? 10 : 15}
                             onClick={openLightbox}

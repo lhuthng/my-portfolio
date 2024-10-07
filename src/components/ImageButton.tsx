@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { squiggle } from '../common';
+import { squiggle, squiggleDuration } from '../common';
 import { ImageButtonProps } from '../types';
 
 const StyledButton = styled.button`
@@ -21,19 +21,19 @@ const StyledButton = styled.button`
     transition: filter 0.3s ease, transform 0.1s ease;
 `;
 
-const FrameImage = styled.img<{offset: number, zIndex: number}>`
+const FrameImage = styled.img<{offset: number, $zIndex: number}>`
     position: absolute;
     top: ${({offset}) => offset}px;
     justify-content: center;
-    z-index: ${({ zIndex }) => zIndex + 1};
-    animation: ${squiggle} 0.5s linear infinite;
+    z-index: ${({ $zIndex }) => $zIndex + 1};
+    animation: ${squiggle} ${squiggleDuration} linear infinite;
 `;
 
-const MainImage = styled.img<{offset: number, zIndex: number, $flipped?: boolean}>`
+const MainImage = styled.img<{offset: number, $zIndex: number, $flipped?: boolean}>`
     position: absolute;
     top: ${({offset}) => offset}px;
     justify-content: center;
-    z-index: ${({ zIndex }) => zIndex};
+    z-index: ${({ $zIndex }) => $zIndex};
     transform: ${({ $flipped }) => $flipped ? 'scaleY(-1)' : 'none'};
     transition: transform 1s ease;
 `;
@@ -49,8 +49,8 @@ const ImageButton : React.FC<ImageButtonProps> = ({
     zIndex = zIndex ?? 1;
     return (
         <StyledButton onClick={onClick}>
-            {frameImage && <FrameImage zIndex={zIndex} offset={offset} src={frameImage}></FrameImage>}
-            <MainImage zIndex={zIndex} offset={offset} src={image} $flipped={flipped} ></MainImage>
+            {frameImage && <FrameImage $zIndex={zIndex} offset={offset} src={frameImage}></FrameImage>}
+            <MainImage $zIndex={zIndex} offset={offset} src={image} $flipped={flipped} ></MainImage>
         </StyledButton>
     );
 };

@@ -8,25 +8,18 @@ export const convertRemToPixels = (rem: number) => {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
+export const squiggleCount = 15;
+const waitTime = 0.1;
+export const squiggleDuration = (waitTime * squiggleCount) + "s";
+export const squiggleRandomDelay = () => Math.floor(Math.random() * squiggleCount * 2) * waitTime + "s";
+
 export const squiggle = keyframes`
-    0% {
-        transform: translate(-1.5px, -1.5px);
-        filter: url('#squiggly-0')
-    }  
-    25% {
-        transform: translate(-1.5px, -1.5px);
-        filter: url('#squiggly-1')
-    }
-    50% {
-        transform: translate(-1.5px, -1.5px);
-        filter: url('#squiggly-2')
-    }
-    75% {
-        transform: translate(-1.5px, -1.5px);
-        filter: url('#squiggly-3')
-    }  
-    100% {
-        transform: translate(-1.5px, -1.5px);
-        filter: url('#squiggly-4')
-    }
+    ${Array.from({ length: squiggleCount + 1 }, (_, index) => {
+        return `
+            ${index / (squiggleCount - 1) * 100}% {
+                transform: translate(-1px, -1px);
+                filter: url('#squiggly-${index}')
+            }
+        `;
+    }).join('')}
 `;

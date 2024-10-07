@@ -10,6 +10,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { SectionProps, VContainer } from './types';
 import StarBackground from './components/StarBackground';
+import TurbelenceFilter from './components/TurbelenceFilter';
+import { squiggleCount } from './common';
 
 //  background-color: #6B0BFD;
 const PageContainer = styled.div`
@@ -64,26 +66,7 @@ const App: React.FC = () => {
     <PageContainer>
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
-          <filter id="squiggly-0">
-            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="1" result="noise" seed="0"/>
-            <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="3" />
-          </filter>
-          <filter id="squiggly-1">
-            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="1" result="noise" seed="1"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
-          </filter>          
-          <filter id="squiggly-2">
-            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="1" result="noise" seed="2"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
-          </filter>
-          <filter id="squiggly-3">
-            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="1" result="noise" seed="3"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
-          </filter>
-          <filter id="squiggly-4">
-            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="1" result="noise" seed="4"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
-          </filter>
+          {Array.from( {length: squiggleCount }, (_, index) => <TurbelenceFilter key={index} id={index} />)}
         </defs> 
       </svg>
       <StarBackground 
