@@ -23,149 +23,134 @@ const backgroundObjects = [ bo1, bo2, bo3, bo4, bo5, bo6, bo7, bo8, bo9, bo10, b
     return image;
 });
 
+class Star {
+	x: number;
+	y: number;
+	alpha: number;
+	dir: number;
+	type: number;
+	constructor(width: number, height: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.type = Math.floor(Math.random() * 3);
+		this.alpha = Math.random();
+		this.dir = (0.2 + Math.random() * 0.8) / 50;
+	}
+	
+	update(): Star {
+		this.alpha += this.dir;
+		if (this.alpha > 1 && this.dir > 0) {
+			this.alpha = 2 - this.alpha;
+			this.dir *= -1;
+		}
+		else if (this.alpha < 0 && this.dir < 0) {
+			this.alpha *= -1;
+			this.dir *= -1;
+		}
+		return this;
+	}
+	
+	draw(canvas: CanvasRenderingContext2D): Star {
+		const color = `rgba(255, 255, 255, ${this.alpha || 1})`;
+		canvas.fillStyle = color;
+		switch (this.type) {
+			case 1: 
+				canvas.fillRect(this.x, this.y, 2, 2); break;
+			case 2: 
+				canvas.fillRect(this.x + 2, this.y, 2, 6);
+				canvas.fillRect(this.x, this.y + 2, 6, 2);
+				break;
+			default:
+				canvas.fillRect(this.x, this.y, 4, 4); break;
+		}
+		return this;
+	}
+}
+
+class FloatingObject {
+	x: number;
+	y: number;
+	rotation: number;
+	index: number;
+	lifeTime: number;
+	dir: {
+		x: number;
+		y: number;
+		rotation: number;
+	}
+	alpha: number;
+	initialTime: number;
+	constructor(width: number, height: number, initialTime: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.rotation = Math.random() * 3.14;
+		this.index = Math.floor(Math.random() * backgroundObjects.length);
+		this.lifeTime = 10 + Math.random() * 50;
+		this.dir = {
+			x: (Math.random() - 0.5) / 6,
+			y: (Math.random() - 0.5) / 6,
+			rotation: ((Math.random() - 0.5) / 628),
+		}
+		this.initialTime = initialTime - Math.random() * this.lifeTime * 1000;
+		this.alpha = 0;
+	}
+	init(width: number, height: number, initialTime: number) {
+		this.x = Math.random() * width;
+		this.y = Math.random() * height;
+		this.rotation = Math.random() * 3.14;
+		this.index = Math.floor(Math.random() * backgroundObjects.length);
+		this.lifeTime = 10 + Math.random() * 50;
+		this.dir = {
+			x: (Math.random() - 0.5) / 6,
+			y: (Math.random() - 0.5) / 6,
+			rotation: ((Math.random() - 0.5) / 628)
+		}
+		this.initialTime = initialTime;
+		this.alpha = 0;
+	}
+	update(time: number, width: number, height: number): FloatingObject {
+		const { x: dx, y: dy, rotation: dr } = this.dir;
+		this.x += dx;
+		this.y += dy;
+		this.rotation += dr;
+		
+		const ellapsedTime = (time - this.initialTime) / 1000;
+		if (ellapsedTime > this.lifeTime) {
+			this.init(width, height, time);
+		}
+		else if (ellapsedTime > this.lifeTime / 2) {
+			this.alpha = 1 - (2 * ellapsedTime - this.lifeTime) / this.lifeTime;
+		}
+		else {
+			this.alpha = 1 - (this.lifeTime - 2 * ellapsedTime) / this.lifeTime;
+		}
+		return this;
+	}
+
+	draw(canvas: CanvasRenderingContext2D): FloatingObject {
+		const image = backgroundObjects[this.index];
+		canvas.translate(this.x ,this.y);
+		canvas.rotate(this.rotation);
+		canvas.globalAlpha = this.alpha;
+		canvas.drawImage(image, -image.width / 1, -image.height / 2);
+		canvas.globalAlpha = 1;
+		canvas.rotate(-this.rotation);
+		canvas.translate(-this.x, -this.y);
+		return this;
+	}
+}
+
 const StarBackground: React.FC<Props> = (props: Props) => {
 	const { backgroundColor = 'black' } = props;
 	useEffect(() => {
 		const canvas = document.getElementById('starfield') as HTMLCanvasElement;
-		const threshold = 100000;
-		let rect = canvas.getBoundingClientRect();
-		let mouse = {
-			x: 0, y: 0
-		}
-
-		const distSq = (A: {x: number, y: number}, B: {x: number, y: number}) => {
-			return Math.pow(A.x-B.x, 2) + Math.pow(A.y-B.y, 2);
-		}
-
-		class Star {
-			x: number;
-			y: number;
-			alpha: number;
-			dir: number;
-			type: number;
-			constructor(width: number, height: number) {
-				this.x = Math.random() * width;
-				this.y = Math.random() * height;
-				this.type = Math.floor(Math.random() * 3);
-				this.alpha = Math.random();
-				this.dir = (0.2 + Math.random() * 0.8) / 50;
-			}
-			
-			update(): Star {
-				this.alpha += this.dir;
-				if (this.alpha > 1 && this.dir > 0) {
-					this.alpha = 2 - this.alpha;
-					this.dir *= -1;
-				}
-				else if (this.alpha < 0 && this.dir < 0) {
-					this.alpha *= -1;
-					this.dir *= -1;
-				}
-				return this;
-			}
-			
-			draw(canvas: CanvasRenderingContext2D): Star {
-				let alpha = this.alpha;
-				const dist = distSq(this, mouse);
-				if (dist < threshold) alpha = Math.max(alpha, 1 - Math.pow(dist / threshold, 0.5));
-				const color = `rgba(255, 255, 255, ${alpha})`;
-				canvas.fillStyle = color;
-				switch (this.type) {
-					case 1: 
-						canvas.fillRect(this.x, this.y, 2, 2); break;
-					case 2: 
-						canvas.fillRect(this.x + 2, this.y, 2, 6);
-						canvas.fillRect(this.x, this.y + 2, 6, 2);
-						break;
-					default:
-						canvas.fillRect(this.x, this.y, 4, 4); break;
-				}
-				return this;
-			}
-		}
-		
-		class FloatingObject {
-			x: number;
-			y: number;
-			rotation: number;
-			index: number;
-			lifeTime: number;
-			dir: {
-				x: number;
-				y: number;
-				rotation: number;
-			}
-			alpha: number;
-			initialTime: number;
-			constructor(width: number, height: number, initialTime: number) {
-				this.x = Math.random() * width;
-				this.y = Math.random() * height;
-				this.rotation = Math.random() * 3.14;
-				this.index = Math.floor(Math.random() * backgroundObjects.length);
-				this.lifeTime = 10 + Math.random() * 50;
-				this.dir = {
-					x: (Math.random() - 0.5) / 6,
-					y: (Math.random() - 0.5) / 6,
-					rotation: ((Math.random() - 0.5) / 628),
-				}
-				this.initialTime = initialTime - Math.random() * this.lifeTime * 1000;
-				this.alpha = 0;
-			}
-			init(width: number, height: number, initialTime: number) {
-				this.x = Math.random() * width;
-				this.y = Math.random() * height;
-				this.rotation = Math.random() * 3.14;
-				this.index = Math.floor(Math.random() * backgroundObjects.length);
-				this.lifeTime = 10 + Math.random() * 50;
-				this.dir = {
-					x: (Math.random() - 0.5) / 6,
-					y: (Math.random() - 0.5) / 6,
-					rotation: ((Math.random() - 0.5) / 628)
-				}
-				this.initialTime = initialTime;
-				this.alpha = 0;
-			}
-			update(time: number, width: number, height: number): FloatingObject {
-				const { x: dx, y: dy, rotation: dr } = this.dir;
-				this.x += dx;
-				this.y += dy;
-				this.rotation += dr;
-				
-				const ellapsedTime = (time - this.initialTime) / 1000;
-				if (ellapsedTime > this.lifeTime) {
-					this.init(width, height, time);
-				}
-				else if (ellapsedTime > this.lifeTime / 2) {
-					this.alpha = 1 - (2 * ellapsedTime - this.lifeTime) / this.lifeTime;
-				}
-				else {
-					this.alpha = 1 - (this.lifeTime - 2 * ellapsedTime) / this.lifeTime;
-				}
-				return this;
-			}
-		
-			draw(canvas: CanvasRenderingContext2D): FloatingObject {
-				const image = backgroundObjects[this.index];
-				canvas.translate(this.x ,this.y);
-				canvas.rotate(this.rotation);
-				canvas.globalAlpha = this.alpha;
-				canvas.drawImage(image, -image.width / 1, -image.height / 2);
-				canvas.globalAlpha = 1;
-				canvas.rotate(-this.rotation);
-				canvas.translate(-this.x, -this.y);
-				return this;
-			}
-		}
-
-		window.addEventListener('mousemove',  (event) => {
-			mouse.x = event.clientX - rect.left;
-			mouse.y = event.clientY - rect.top;
-		});
 
 		if (canvas) {
 			const c = canvas.getContext('2d');
+            
 
 			if (c) {
+                
 				let initialWidth = window.visualViewport?.width || window.innerWidth;
 				let initialHeight = window.visualViewport?.height || window.innerHeight;
 
@@ -199,15 +184,14 @@ const StarBackground: React.FC<Props> = (props: Props) => {
 					clear();
 					stars.forEach(star => star.update().draw(c));
 					floatingObjects.forEach(floatingObject => floatingObject.update(time, initialWidth, initialHeight).draw(c));
-					c.fillStyle = `rgba(255, 0, 0)`;
-					c.fillRect(mouse.x, mouse.y, 2, 2);
+
 					requestAnimationFrame(tick);
 				};
 
 				requestAnimationFrame(init);
 
+				// add window resize listener:
 				window.addEventListener('resize', function () {
-					rect = canvas.getBoundingClientRect();
 					initialWidth = window.visualViewport?.width || window.innerWidth;
 					initialHeight = window.visualViewport?.height || window.innerHeight;
 					setCanvasExtents();
@@ -237,6 +221,7 @@ const StarBackground: React.FC<Props> = (props: Props) => {
 				left: 0,
 				zIndex: -888,
 				opacity: 1,
+				pointerEvents: 'none',
 				mixBlendMode: 'screen',
 			}}
 		></canvas>
