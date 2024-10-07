@@ -154,7 +154,7 @@ const ArtGallery: React.FC = () => {
                         <ArtEntity 
                             key={index}
                             src={art.src}
-                            size={toggle ? 10 : 15}
+                            size={toggle ? 8 : 15}
                             onClick={openLightbox}
                             desc={art.desc}
                             isVideo={art.isVideo}

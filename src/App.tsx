@@ -21,6 +21,9 @@ const PageContainer = styled.div`
   justify-content: center;
   background: linear-gradient(to bottom, #6B0BFD, black);
   z-index: -999;
+  svg {
+    position: absolute;
+  }
 `;
 
 const SectionContainer = styled(VContainer)`

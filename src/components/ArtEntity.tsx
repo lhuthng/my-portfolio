@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 
@@ -26,10 +26,6 @@ const Thumbnail = styled.img`
     left: 0;
     border-radius: 1rem;
     box-sizing: border-box;
-    // &:hover {
-    //     transform: translateY(-0.75rem);
-    //     filter: brightness(1.2);
-    // }
     transition: all 0.1s ease-in-out;
     filter: drop-shadow(0 0 0.2rem purple);
 `;

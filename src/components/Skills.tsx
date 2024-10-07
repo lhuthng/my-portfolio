@@ -31,6 +31,7 @@ import filmoraIcon from '../images/filmora-icon.png';
 import premierIcon from '../images/premier-icon.png';
 import photoshopIcon from '../images/pts-icon.png';
 import flstudioIcon from '../images/flstudio-icon.png';
+import { squiggle, squiggleDuration } from '../common';
 
 
 const MainContainer = styled(HContainer)`
@@ -84,6 +85,9 @@ const CommonContainer = styled(SkillsContainer)`
     filter: drop-shadow(0 0 0.5rem purple);
     p {
         transform: translateY(-12px);
+        b {
+            animation: ${squiggle} ${squiggleDuration} linear infinite;
+        }
     }
     &: before {
         content: '';
