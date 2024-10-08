@@ -255,11 +255,12 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
             <Layout ref={layoutRef}>
                 <MainContainer>
                     <ThumbnailContainer>
-                        <Pivot />
-                        <ImageContainer>
-                            <FrameImage src={thumbnailFrame}></FrameImage>
-                            <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
-                        </ImageContainer>
+                        <Pivot>
+                            <ImageContainer>
+                                <FrameImage src={thumbnailFrame}></FrameImage>
+                                <MainImage src={image} $glowingColor={glow || 'none'}></MainImage>
+                            </ImageContainer>
+                        </Pivot>
                     </ThumbnailContainer>
                     <DescriptionContainer>
                         <Name><b>{name}</b></Name>
