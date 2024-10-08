@@ -53,7 +53,7 @@ const Layout = styled(VContainer)`
         border-radius: calc(2rem + 5px);
         filter: blur(0.6rem);
         z-index: -1;
-        background-image: conic-gradient(#ab00ff, #8300c4, #4c00a4, #33007b, #31004a, #31004a, #33007b, #4c00a4, #8300c4, #ab00ff);
+        background-image: conic-gradient(#ff00ff, #8300c4, #4c00a4, #33007b, #31004a, #31004a, #33007b, #4c00a4, #8300c4, #ff00ff);
     }
 `;
 

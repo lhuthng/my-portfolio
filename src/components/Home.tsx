@@ -14,7 +14,7 @@ import { squiggle } from '../common';
 const GapHContainer = styled(HContainer)`
     padding: 0.5rem;
     gap: 1rem;
-    background-color: rgba(230, 213, 255, 0.9);
+    background-color: rgba(230, 213, 255);
     border-radius: 1rem;
     filter: drop-shadow(0 0 0.2rem purple);
     max-width: 45rem;
@@ -37,11 +37,23 @@ const GapHContainer = styled(HContainer)`
     }
 `;
 
-const GapVContainer = styled(VContainer)`
-    padding: 1rem;
+const LeftContainer = styled(VContainer)`
+    padding: 0.5rem;
     gap: 1rem;
     border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: hsl(52 100% 91%);
+    &: after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        border-width: 1.5rem;
+        border-style: solid;
+        border-color: rgba(230, 213, 255) hsl(52 80% 70%) hsl(52 80% 70%) rgba(230, 213, 255);
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.3), 1px 1px 1px rgba(0,0,0,0.2)
+    }
 `;
 
 const ButtonContainer = styled(HContainer)`
@@ -50,12 +62,22 @@ const ButtonContainer = styled(HContainer)`
 `;
 
 const glow = keyframes`
-    0% { filter: drop-shadow(0 0 0.2rem purple); }
-    50% { filter: drop-shadow(0 0 0.8rem purple); }
-    100% { filter: drop-shadow(0 0 0.2rem purple); }
+    0% { 
+        transform: translateY(0);
+        filter: drop-shadow(0 15px 0.1rem gray) 
+    }
+    50% {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 18px 0.1rem gray) 
+    }
+    100% { 
+        transform: translateY(0);
+        filter: drop-shadow(0 15px 0.1rem gray) 
+    }
 `;
 
 const AvatarContainer = styled.div`
+    z-index: 10;
     animation: ${glow} 3s ease-in-out infinite;
 `;
 const Avatar = styled.img`
@@ -82,7 +104,7 @@ const Home: React.FC = () => {
     return (
         <VContainer>
             <GapHContainer>
-                <GapVContainer>
+                <LeftContainer>
                     <AvatarContainer>
                         <Avatar src={avatar} alt="Avatar"></Avatar>
                     </AvatarContainer>
@@ -91,7 +113,7 @@ const Home: React.FC = () => {
                         <ImageButton random={true} offset={-35} frameImage={frame} image={linkedinIcon} onClick={openWindow("www.linkedin.com/in/huuthangle/")}></ImageButton>
                         <ImageButton random={true} offset={-35} frameImage={frame} image={artstationIcon} onClick={openWindow("www.artstation.com/lhuthng")}></ImageButton>
                     </ButtonContainer>
-                </GapVContainer>
+                </LeftContainer>
                 <GreetingText>
                     Hi, I'm <b>Thang</b> <br />
                     {MapWavingTexts("an-enthusiastic-developer", 50, 0)} and <br />

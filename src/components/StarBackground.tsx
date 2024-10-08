@@ -67,7 +67,7 @@ const StarBackground: React.FC<Props> = (props: Props) => {
 			draw(canvas: CanvasRenderingContext2D): Star {
 				let alpha = this.alpha;
 				const dist = distSq(this, mouse);
-				if (dist < threshold) alpha = Math.max(alpha, 1 - Math.pow(dist / threshold, 0.5));
+				if (dist < threshold) alpha = Math.max(alpha, 1 - dist / threshold);
 				const color = `rgba(255, 255, 255, ${alpha})`;
 				canvas.fillStyle = color;
 				switch (this.type) {
@@ -189,7 +189,7 @@ const StarBackground: React.FC<Props> = (props: Props) => {
 
 				const init = (time: number) => {
 					requestAnimationFrame(tick);
-					const starCount = initialWidth * initialHeight * 1000 / (1920 * 1080);
+					const starCount = initialWidth * initialHeight * 500 / (1920 * 1080);
 					const objectCount = initialWidth * initialHeight * 25 / (1920 * 1080);
 					stars = Array.from({ length: starCount >> 0 }, () => new Star(initialWidth, initialHeight));
 					floatingObjects = Array.from( { length: objectCount >> 0 }, () => new FloatingObject(initialWidth, initialHeight, time));

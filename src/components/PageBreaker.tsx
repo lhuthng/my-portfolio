@@ -3,14 +3,28 @@ import { VContainer } from '../types';
 import wing from '../images/page-breaker-wing.png';
 import body from '../images/page-breaker-body.png';
 import core from '../images/page-breaker-core.png';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { squiggle, squiggleDuration } from '../common';
+
+const ShiftShadow = keyframes`
+    from {
+        filter: drop-shadow(0 4px 0 purple);
+    }
+    to {
+        filter: drop-shadow(0 -4px 0 purple);
+    }
+`
 
 const Container = styled(VContainer)`
     width: 100%;
     height: 96px;
-    filter: drop-shadow(0 0 0.2rem purple);
+    filter: drop-shadow(0 4px 0 purple);
     margin-top: 2rem;
+    transition: all 0.3 ease;
+    animation: ${ShiftShadow} ease;
+    animation-timeline: view();
+    animation-range-start: 0;
+    animation-range-end: 100%;
 `
 
 const StyledImage = styled.img<{offset: number}>`
