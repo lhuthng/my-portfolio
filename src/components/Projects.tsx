@@ -12,6 +12,7 @@ import mulIpThumbnail from '../images/multiple-ips-thumbnail.png';
 import geneticThumbnail from '../images/genetic-thumbnail.png';
 import portfolioThumbnail from '../images/portfolio-thumbnail.png'
 import orbtNNThumbnail from '../images/orbt-nn-thumbnail.png';
+import balatroThumnail from '../images/balatro-thumbnail.png';
 
 const StyledLayout = styled(Layout)`
     font-size: 1.8rem;
@@ -46,6 +47,15 @@ const projects: ProjectEntityProps[] = [
         ['React (Typescript)', 'NodeJS', 'Web Socket', 'UI Design', 'CSP'], 
         'program', 'yellow',
         'www.github.com/lhuthng/my-portfolio'
+    ),
+    assign(
+        'Vietnamese Localization for Balatro', balatroThumnail,
+        (<>
+            <span>A Vietnamese Localization mod for the game <a href='https://www.playbalatro.com/'>Balatro</a>. I extended the game’s pixelated font to support the Vietnamese language and translated almost the entire game into Vietnamese, providing a localized experience for Vietnamese players.</span>
+        </>),
+        ['Pixel Art', 'Font Forge', 'HTML', 'JavaScript', 'Lua'],
+        'program', 'red',
+        'www.github.com/lhuthng/balatro-vi-localization',
     ),
     assign(
         'L-Game', LGameThumbnail, 
