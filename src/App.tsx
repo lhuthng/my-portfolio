@@ -44,7 +44,7 @@ const SVG = styled.svg`
   pointer-events: none;
 `
 
-const CreateSectioRef = (name: string, component: React.FC) => {
+const CreateSectionRef = (name: string, component: React.FC) => {
   return {
     ref: useRef<HTMLDivElement>(null),
     name: name,
@@ -55,15 +55,15 @@ const CreateSectioRef = (name: string, component: React.FC) => {
 
 const App: React.FC = () => {
   const sectionReferences: SectionProps[] = [
-    CreateSectioRef("Home", Dummy),
-    CreateSectioRef("_Home", Home),
-    CreateSectioRef("_Breaker", PageBreaker),
-    CreateSectioRef("Skills", Dummy),
-    CreateSectioRef("_Skills", Skills),
-    CreateSectioRef("_Breaker", PageBreaker),
-    CreateSectioRef("Projects", Dummy),
-    CreateSectioRef("_Projects", Projects),
-    CreateSectioRef("_Breaker", PageBreaker),
+    CreateSectionRef("Home", Dummy),
+    CreateSectionRef("_Home", Home),
+    CreateSectionRef("_Breaker", PageBreaker),
+    CreateSectionRef("Skills", Dummy),
+    CreateSectionRef("_Skills", Skills),
+    CreateSectionRef("_Breaker", PageBreaker),
+    CreateSectionRef("Projects", Dummy),
+    CreateSectionRef("_Projects", Projects),
+    CreateSectionRef("_Breaker", PageBreaker),
   ];
   const scrollTo = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
