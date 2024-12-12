@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import { VContainer, Layout, Title, ProjectEntityProps } from '../types';
 import styled from 'styled-components';
 import ProjectEntity from './ProjectEntity';
-import ArtGallery from './ArtGallery';
 import LGameThumbnail from '../images/L-Game-thumbnail.png';
 import RVThumbnail from '../images/R-V-thumbnail.png';
 import SQ1Thumbnail from '../images/square-1-thumbnail.png';
@@ -129,9 +128,7 @@ const Projects: React.FC = () => {
                 category={category}
                 link={link}
                 demo={demo}
-            />)}
-            <ArtGallery />
-            
+            />)}            
         </StyledLayout>
     )
 };

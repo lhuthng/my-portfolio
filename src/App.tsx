@@ -4,6 +4,7 @@ import Dummy from './components/Dummy';
 import PageBreaker from './components/PageBreaker';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import ArtGallery from './components/ArtGallery';
 import './App.css';
 import styled from 'styled-components';
 import Header from './components/Header';
@@ -64,6 +65,8 @@ const App: React.FC = () => {
     CreateSectionRef("Projects", Dummy),
     CreateSectionRef("_Projects", Projects),
     CreateSectionRef("_Breaker", PageBreaker),
+    CreateSectionRef("Gallery", Dummy),
+    CreateSectionRef("_Gallery", ArtGallery),
   ];
   const scrollTo = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {

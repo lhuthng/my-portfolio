@@ -42,6 +42,7 @@ const arts: { src: string, desc?: string , isVideo?: boolean }[] = [
 ] 
 
 const MainContainer = styled(VContainer) `
+    font-family: Omori2;
     width: 100%;
 `
 
