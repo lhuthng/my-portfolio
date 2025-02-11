@@ -30,3 +30,7 @@ To start
 ```bash
 npm start
 ```
+To build
+```bash
+npm run build
+```
