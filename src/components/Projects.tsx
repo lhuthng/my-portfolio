@@ -12,6 +12,7 @@ import geneticThumbnail from '../images/genetic-thumbnail.png';
 import portfolioThumbnail from '../images/portfolio-thumbnail.png'
 import orbtNNThumbnail from '../images/orbt-nn-thumbnail.png';
 import balatroThumnail from '../images/balatro-thumbnail.png';
+import lineFollowingRobotThumbnail from '../images/line-following-robot-thumbnail.png'
 
 const StyledLayout = styled(Layout)`
     font-size: 1.8rem;
@@ -23,7 +24,7 @@ const ProjectLayout = styled(VContainer)`
     text-align: left;
 `;
 
-const assign = (name: string, image: string, description: ReactNode, skills: string[], category: 'program' | 'simple', glow?: string, link?: string, demo?: string) => {
+const assign = (name: string, image: string, description: ReactNode, skills: string[], category: 'program' | 'simple' | 'embed', glow?: string, link?: string, demo?: string, embed?: ReactNode) => {
     return {
         name: name, 
         image: image, 
@@ -32,7 +33,8 @@ const assign = (name: string, image: string, description: ReactNode, skills: str
         category: category, 
         link: link, 
         demo: demo, 
-        glow: glow 
+        glow: glow,
+        embed: embed
     };
 }
 
@@ -88,6 +90,15 @@ const projects: ProjectEntityProps[] = [
         netVisGif
     ),
     assign(
+        'Line-following robot', lineFollowingRobotThumbnail,
+        (<span>A university project to program a robot that follows a black line to the end and returns to the start autonomously.</ span>),
+        ['Embedded Systems Programming', 'C Programming', 'Control Systems'],
+        'embed', 'gray',
+        'www.facebook.com/100002977994463/videos/1165947973514458/',
+        undefined,
+        (<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Flamhison%2Fvideos%2F1165947973514458%2F&show_text=false&width=560&t=0" width="560" height="314"></iframe>)
+    ),
+    assign(
         'Multiple-Public-IPs', mulIpThumbnail,
         (<span>This project takes advantage of virtual machines to connect to multiple VPNs simultaneously, without interrupting any existing connections when joining another network. (*Ahem*, I didn't make this for especially logging like <b>15 video game accounts</b>).</span>),
         ['VMWare', 'Linux', 'Network Configuration', 'Bash'],
@@ -107,7 +118,7 @@ const projects: ProjectEntityProps[] = [
         ['Genetic Programming', 'Neural Network', 'C# Programming'],
         'program', 'orange',
         'github.com/thnglhu/OrbtNN'
-    )
+    ),
 ];
 
 const Projects: React.FC = () => {
@@ -117,7 +128,7 @@ const Projects: React.FC = () => {
                 <h1>~Projects~</h1>
             </Title>
             {projects.map(({
-                name, image, glow, description, skills, category, link, demo
+                name, image, glow, description, skills, category, link, demo, embed
             }, index) => <ProjectEntity
                 key={index}
                 name={name}
@@ -128,6 +139,7 @@ const Projects: React.FC = () => {
                 category={category}
                 link={link}
                 demo={demo}
+                embed={embed}
             />)}            
         </StyledLayout>
     )

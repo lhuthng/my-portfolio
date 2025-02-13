@@ -210,7 +210,8 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
     category,
     demo,
     link,
-    glow
+    glow,
+    embed
 }) => {
     const [expanded, setExpanded] = useState(false);
     const [iframeSize, setIframeSize] = useState<{ width: number, height: number} | null>(null);
@@ -218,6 +219,7 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
     const [iframeSrc, setIframeSrc] = useState("about:blank");
     const [expansionHeight, setExpansionHeight] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
+    const embedRef = useRef<HTMLIFrameElement>(null);
 
     const toggle = (isOn: boolean) => {
         setExpanded(isOn);
@@ -245,9 +247,17 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                 console.error('Error fetching size: ', error);
             }
         };
+        if (embedRef.current) {
+            const ifr = embedRef.current.querySelector('iframe');
+            if (ifr){
+                const size = { height: parseInt(ifr.height, 10), width: parseInt(ifr.width, 10) };
+                console.log(size);
+                setIframeSize(size);
+                toggle(expanded);
+            }
+        }
         fetchSize();
     }, []);
-
     const layoutRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -273,12 +283,13 @@ const ProjectEntity: React.FC<ProjectEntityProps> = ({
                         {link && <ButtonContainer><ImageButton image={linkIcon} onClick={openWindow(link)} offset={-23}/></ButtonContainer>}
                     </DescriptionContainer>
                 </MainContainer>
-                {demo && <ExpansionContainer ref={ref} height={expansionHeight}>
+                {(demo || embed !== undefined) && <ExpansionContainer ref={ref} height={expansionHeight}>
                     {category === 'simple' && <StyledImage src={demo} />}
-                    {iframeSize && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
+                    {iframeSize && category === "program" && <iframe title="Demo" src={iframeSrc} width={iframeWidth + 5} height={iframeSize.height + 5} />}
+                    {(embed !== undefined) && <div ref={embedRef}>{embed}</div>}
                 </ExpansionContainer>}
             </Layout>
-            {demo && (category === 'simple' || iframeSize) && <ExpandButtonContainer>
+            {(demo || embed !== undefined) && (category === 'simple' || iframeSize) && <ExpandButtonContainer>
                 <ExpandButton image={expandIcon} onClick={() => {toggle(!expanded);}} offset={-60} flipped={expanded} zIndex={100}/>
             </ExpandButtonContainer>}
         </OuterLayout>

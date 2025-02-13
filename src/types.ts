@@ -34,10 +34,11 @@ export interface ProjectEntityProps {
     image: string;
     description: ReactNode;
     skills: string[],
-    category: 'program' | 'simple',
+    category: 'program' | 'simple' | 'embed',
     link?: string;
     demo?: string;
     glow?: string;
+    embed?: ReactNode;
 };
 
 export interface SkillCategoryProps {
