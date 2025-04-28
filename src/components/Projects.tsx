@@ -64,7 +64,7 @@ const projects: ProjectEntityProps[] = [
         ['Pixel Art', '2D Animation', '2D Transition', 'Music Composing', 'Game Programming', 'AI Programming', 'Network Programming'], 
         'program', 'pink',
         'www.github.com/lhuthng/L-Game', 
-        'https://thangvps.duckdns.org/apps/L-Game', 
+        'https://huuthang.site/old/apps/L-Game', 
     ),
     assign(
         'Recorder-Visualization', RVThumbnail,
@@ -72,7 +72,7 @@ const projects: ProjectEntityProps[] = [
         ['Pixel Art', '2D Animation', 'Visualization', 'Audio Handling', 'Music Theory'], 
         'program', 'teal',
         'www.github.com/lhuthng/RecorderVisualization',
-        'https://thangvps.duckdns.org/apps/Recorder-Visualization'
+        'https://huuthang.site/old/apps/Recorder-Visualization'
     ),
     assign(
         'Square-1-Helper (Bachelor Thesis)', SQ1Thumbnail,

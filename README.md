@@ -4,6 +4,7 @@ Welcome to my digital sanctuary, meticulously crafted with React and inspired by
 
 ![Alt Text](src/images/page-breaker-core.png) 
 
+Update 2025: Moved to a new domain [huuthang.site](https://huuthang.site)
 
 ## Features
 
@@ -18,8 +19,8 @@ Welcome to my digital sanctuary, meticulously crafted with React and inspired by
 
 * **Frontend:** React
 * **Backend:** Node.js, Express, WebSocket
-* **Hosting:** FastByte's AutoVPS
-* **Domain Resolution:** [DuckDNS](https://www.duckdns.org/)
+* **Hosting:** ~~FastByte's AutoVPS~~ Contabo
+* **Domain Resolution:** ~~[DuckDNS](https://www.duckdns.org/)~~ [Joker.com](https://joker.com/)
 
 ## Note for myself
 To install independencies
