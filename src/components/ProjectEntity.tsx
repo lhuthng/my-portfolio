@@ -3,9 +3,9 @@ import styled, { keyframes } from 'styled-components';
 import { HContainer, ProjectEntityProps, VContainer } from '../types';
 import { openWindow, squiggleDuration } from '../common';
 import ImageButton from './ImageButton';
-import thumbnailFrame from '../images/thumbnail-frame.png';
-import linkIcon from '../images/link-icon.png';
-import expandIcon from '../images/more-icon.png';
+import thumbnailFrame from '../images/thumbnail-frame.webp';
+import linkIcon from '../images/link-icon.webp';
+import expandIcon from '../images/more-icon.webp';
 import { squiggle } from '../common';
 
 const FadeIn = keyframes`

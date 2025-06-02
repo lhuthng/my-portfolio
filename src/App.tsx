@@ -47,7 +47,7 @@ const SVG = styled.svg`
 
 const CreateSectionRef = (name: string, component: React.FC) => {
   return {
-    ref: useRef<HTMLDivElement>(null),
+    ref: null,
     name: name,
     component: component,
     ignore: name[0]==='_'

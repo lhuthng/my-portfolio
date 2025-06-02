@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from 'styled-components';
 
 export interface SectionProps {
-    ref: React.RefObject<HTMLDivElement>;
+    ref: React.RefObject<HTMLDivElement> | null;
     component: React.FC;
     name: string;
     ignore?: boolean;

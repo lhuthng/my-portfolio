@@ -2,17 +2,17 @@ import React, { ReactNode } from 'react';
 import { VContainer, Layout, Title, ProjectEntityProps } from '../types';
 import styled from 'styled-components';
 import ProjectEntity from './ProjectEntity';
-import LGameThumbnail from '../images/L-Game-thumbnail.png';
-import RVThumbnail from '../images/R-V-thumbnail.png';
-import SQ1Thumbnail from '../images/square-1-thumbnail.png';
-import NVThumbnail from '../images/N-V-thumbnail.png';
+import LGameThumbnail from '../images/L-Game-thumbnail.webp';
+import RVThumbnail from '../images/R-V-thumbnail.webp';
+import SQ1Thumbnail from '../images/square-1-thumbnail.webp';
+import NVThumbnail from '../images/N-V-thumbnail.webp';
 import netVisGif from '../images/net-vis.gif';
-import mulIpThumbnail from '../images/multiple-ips-thumbnail.png';
-import geneticThumbnail from '../images/genetic-thumbnail.png';
-import portfolioThumbnail from '../images/portfolio-thumbnail.png'
-import orbtNNThumbnail from '../images/orbt-nn-thumbnail.png';
-import balatroThumnail from '../images/balatro-thumbnail.png';
-import lineFollowingRobotThumbnail from '../images/line-following-robot-thumbnail.png'
+import mulIpThumbnail from '../images/multiple-ips-thumbnail.webp';
+import geneticThumbnail from '../images/genetic-thumbnail.webp';
+import portfolioThumbnail from '../images/portfolio-thumbnail.webp'
+import orbtNNThumbnail from '../images/orbt-nn-thumbnail.webp';
+import balatroThumnail from '../images/balatro-thumbnail.webp';
+import lineFollowingRobotThumbnail from '../images/line-following-robot-thumbnail.webp'
 
 const StyledLayout = styled(Layout)`
     font-size: 1.8rem;

@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
         <StyledHeader>
             <Nav>
                 {infos.filter(info => !info.ignore).map((info, index) => (
-                    <StyledA key={index} onClick={() => scrollTo(info.ref)} alt={info.name}><b>{info.name}</b></StyledA>
+                    <StyledA key={index} onClick={() => info.ref && scrollTo(info.ref)} alt={info.name}><b>{info.name}</b></StyledA>
                 ))}
             </Nav>
         </StyledHeader>

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect} from 'react';
 import { VContainer } from '../types';
-import wing from '../images/page-breaker-wing.png';
-import body from '../images/page-breaker-body.png';
-import core from '../images/page-breaker-core.png';
+import wing from '../images/page-breaker-wing.webp';
+import body from '../images/page-breaker-body.webp';
+import core from '../images/page-breaker-core.webp';
 import styled, { keyframes } from 'styled-components';
 import { squiggle, squiggleDuration } from '../common';
 

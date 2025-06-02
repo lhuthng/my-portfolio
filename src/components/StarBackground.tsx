@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-import bo1 from '../images/bo-1.png';
-import bo2 from '../images/bo-2.png';
-import bo3 from '../images/bo-3.png';
-import bo4 from '../images/bo-4.png';
-import bo5 from '../images/bo-5.png';
-import bo6 from '../images/bo-6.png';
-import bo7 from '../images/bo-7.png';
-import bo8 from '../images/bo-8.png';
-import bo9 from '../images/bo-9.png';
-import bo10 from '../images/bo-10.png';
-import bo11 from '../images/bo-11.png';
-import bo12 from '../images/bo-12.png';
-import bo13 from '../images/bo-13.png';
+import bo1 from '../images/bo-1.webp';
+import bo2 from '../images/bo-2.webp';
+import bo3 from '../images/bo-3.webp';
+import bo4 from '../images/bo-4.webp';
+import bo5 from '../images/bo-5.webp';
+import bo6 from '../images/bo-6.webp';
+import bo7 from '../images/bo-7.webp';
+import bo8 from '../images/bo-8.webp';
+import bo9 from '../images/bo-9.webp';
+import bo10 from '../images/bo-10.webp';
+import bo11 from '../images/bo-11.webp';
+import bo12 from '../images/bo-12.webp';
+import bo13 from '../images/bo-13.webp';
 
 interface Props {
 	backgroundColor?: string;

@@ -4,11 +4,11 @@ import ImageButton from './ImageButton';
 import WavingLetter from './WavingLetter';
 import { HContainer, VContainer } from '../types';
 import { openWindow, squiggleDuration } from '../common';
-import avatar from '../images/avatar.png';
-import frame from '../images/frame.png';
-import githubIcon from '../images/github-icon.png';
-import linkedinIcon from '../images/linkedin-icon.png';
-import artstationIcon from '../images/artstation-icon.png';
+import avatar from '../images/avatar.webp';
+import frame from '../images/frame.webp';
+import githubIcon from '../images/github-icon.webp';
+import linkedinIcon from '../images/linkedin-icon.webp';
+import artstationIcon from '../images/artstation-icon.webp';
 import { squiggle } from '../common';
 
 const GapHContainer = styled(HContainer)`
